@@ -5,69 +5,83 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 
-class Author(models.Model):
-    firstname = models.CharField(max_length=50)
-    lastname = models.CharField(max_length=50)
-    birthdate = models.DateField()
-    city = models.CharField(max_length=20, null=True, blank=True)
-    def __str__(self):
-        return self.lastname
-
-def validate_numpages(value):
-    if value < 50 or value > 1000:
-        raise ValidationError('Numpages should between 50 and 1000')
-class Book(models.Model):
+class Announcement(models.Model):
     title = models.CharField(max_length=100)
-    author = models.ForeignKey(Author)
-    in_stock = models.BooleanField(default=True)
-
-    numpages = models.IntegerField(null=True, blank=True, validators=[validate_numpages])
+    author = models.ForeignKey(Manager)
+    description = models.CharField(max_length=100000)
     def __str__(self):
         return self.title
 
-class Student(User):
-    PROVINCE_CHOICES = (
-        ('AB','Alberta'), # First value is stored in db, the second is descriptive
-        ('MB','Manitoba'),
-        ('ON','Ontario'),
-        ('QC','Quebec'),
-    )
-    # firstname = models.CharField(max_length=50, null=True, blank=True)
-    # lastname = models.CharField(max_length=50, null=True, blank=True)
+class Manager(User):
+    firstname = models.CharField(max_length=50, null=True, blank=True)
+    lastname = models.CharField(max_length=50, null=True, blank=True)
     address = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=20, default='Windsor')
-    province = models.CharField(max_length=2, choices=PROVINCE_CHOICES, default='ON')
     age = models.IntegerField(null=True, blank=True)
   #  photo = models.ImageField(null=True, blank=True, upload_to='photos')
     def __str__(self):
         return self.last_name
 
-class Course(models.Model):
-    course_no = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=50)
-    textbook = models.ForeignKey(Book, null=True, blank=True)
-    students = models.ManyToManyField(Student, blank=True)
+class Project(models.Model):
+    project_no = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=50)
+    leader = models.CharField(max_length=50)
+    start_date = models.TimeField()
+    end_date = models.TimeField()
+
+    Communication = 0
+    Planning = 1
+    Modeling = 2
+    Construction = 3
+    Deployment = 4
+    phase_choice = (
+        (0, 'Communication'),
+        (1, 'Planning'),
+        (2, 'Modeling'),
+        (3, 'Construction'),
+        (4, 'Deploylment')
+    )
+    phase = models.IntegerField(default=0, choices=phase_choice)
+    description = models.CharField(max_length=100000)
+    # textbook = models.ForeignKey(Book, null=True, blank=True)
+    # students = models.ManyToManyField(Student, blank=True)
     def __str__(self):
-        return str(self.course_no)+' '+ self.title
+        return str(self.project_no)+' '+ self.name
 
     # def __iter__(self):
     #     return self.title
 
-class Topic(models.Model):
-    subject = models.CharField(max_length=100, unique=True)
-    intro_course = models.BooleanField(default=True)
-    NO_PREFERENCE = 0
-    MORNING = 1
-    AFTERNOON = 2
-    EVENING = 3
-    TIME_CHOICES = (
-        (0, 'No preference'),
-        (1, 'Morning'),
-        (2, 'Afernoon'),
-        (3, 'Evening')
+class Task(models.Model):
+    project_affiliation = models.ForeignKey(Project, null=True, blank=True)
+    name = models.CharField(max_length=50)
+    start_date = models.TimeField()
+    due_date = models.TimeField()
+    actual_end_date = models.TimeField()
+    REQUIRED = 0
+    SIGNIFICANT = 1
+    MODERATE = 2
+    MINOR = 3
+    LOW = 4
+    Priority_choice = (
+        (0, 'Required'),
+        (1, 'Significant'),
+        (2, 'Moderate'),
+        (3, 'Minor'),
+        (4, 'Low')
     )
-    time = models.IntegerField(default=0, choices=TIME_CHOICES)
-    num_responses = models.IntegerField(default=0)
-    avg_age = models.IntegerField(default=20)
+    priority = models.IntegerField(default=0, choices=Priority_choice)
+    description = models.CharField(max_length=100000)
     def __str__(self):
-        return self.subject
+        return self.name
+
+class Issue(models.Model):
+    object = models.CharField(max_length=1000)
+    announcer = models.ForeignKey(Manager, null=True, blank=True)
+    description = models.CharField(max_length=100000)
+    def __str__(self):
+        return self.object
+
+class Answer(models.Model):
+    answer = models.CharField(max_length=100000)
+    replyer = models.ForeignKey(Manager, null=True, blank=True)
+    object_no = models.ForeignKey(Issue, null=True, blank=True)
