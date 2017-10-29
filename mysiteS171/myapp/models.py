@@ -7,27 +7,34 @@ from django.utils.translation import ugettext_lazy as _
 
 class Announcement(models.Model):
     title = models.CharField(max_length=100)
-    author = models.ForeignKey(Manager)
+    author = models.ForeignKey(Employee, null=True, blank=True)
     description = models.CharField(max_length=100000)
+    date = models.DateTimeField()
     def __str__(self):
         return self.title
 
-class Manager(User):
+class Requirement(models.Model):
+    title = models.CharField(max_length=100)
+    customer = models.CharField(max_length=100)
+    description = models.CharField(max_length=100000)
+    date = models.DateTimeField()
+    def __str__(self):
+        return self.title
+
+class Employee(User):
     firstname = models.CharField(max_length=50, null=True, blank=True)
     lastname = models.CharField(max_length=50, null=True, blank=True)
-    address = models.CharField(max_length=100, null=True, blank=True)
-    city = models.CharField(max_length=20, default='Windsor')
-    age = models.IntegerField(null=True, blank=True)
-  #  photo = models.ImageField(null=True, blank=True, upload_to='photos')
+    position = models.CharField(max_length=50, null=True, blank=True)
+    phone = models.IntegerField(max_length=15)
     def __str__(self):
-        return self.last_name
+        return self.first_name, self.last_name
 
 class Project(models.Model):
     project_no = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     leader = models.CharField(max_length=50)
-    start_date = models.TimeField()
-    end_date = models.TimeField()
+    start_date = models.DateField()
+    end_date = models.DateField()
 
     Communication = 0
     Planning = 1
@@ -54,9 +61,9 @@ class Project(models.Model):
 class Task(models.Model):
     project_affiliation = models.ForeignKey(Project, null=True, blank=True)
     name = models.CharField(max_length=50)
-    start_date = models.TimeField()
-    due_date = models.TimeField()
-    actual_end_date = models.TimeField()
+    start_date = models.DateField()
+    due_date = models.DateField()
+    actual_end_date = models.DateField()
     REQUIRED = 0
     SIGNIFICANT = 1
     MODERATE = 2
@@ -76,12 +83,12 @@ class Task(models.Model):
 
 class Issue(models.Model):
     object = models.CharField(max_length=1000)
-    announcer = models.ForeignKey(Manager, null=True, blank=True)
+    announcer = models.ForeignKey(Employee, null=True, blank=True)
     description = models.CharField(max_length=100000)
     def __str__(self):
         return self.object
 
 class Answer(models.Model):
     answer = models.CharField(max_length=100000)
-    replyer = models.ForeignKey(Manager, null=True, blank=True)
+    replyer = models.ForeignKey(Employee, null=True, blank=True)
     object_no = models.ForeignKey(Issue, null=True, blank=True)

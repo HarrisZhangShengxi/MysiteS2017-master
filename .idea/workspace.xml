@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11af94b8-99ee-4b82-a9f9-e9d832b9a1d6" name="manage.py" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysiteS171/db.sqlite3" afterPath="$PROJECT_DIR$/mysiteS171/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MysiteS2017-master.iml" afterPath="$PROJECT_DIR$/.idea/MysiteS2017-master.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysiteS171/myapp/admin.py" afterPath="$PROJECT_DIR$/mysiteS171/myapp/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysiteS171/myapp/models.py" afterPath="$PROJECT_DIR$/mysiteS171/myapp/models.py" />
-    </list>
-    <list id="53dd1f25-8912-48ff-bafb-e49e2572f475" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata.keystream" afterPath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata.keystream" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata.keystream.len" afterPath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata.keystream.len" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata.len" afterPath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata.len" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata_i" afterPath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata_i" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata_i.len" afterPath="$PROJECT_DIR$/.idea/dataSources/13df54a3-f00a-4d09-8cab-e8c44ed7611e/_metadata_/metadata_i.len" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysiteS171/myapp/admin.py" afterPath="$PROJECT_DIR$/mysiteS171/myapp/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysiteS171/myapp/forms.py" afterPath="$PROJECT_DIR$/mysiteS171/myapp/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysiteS171/myapp/models.py" afterPath="$PROJECT_DIR$/mysiteS171/myapp/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysiteS171/myapp/urls.py" afterPath="$PROJECT_DIR$/mysiteS171/myapp/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysiteS171/myapp/views.py" afterPath="$PROJECT_DIR$/mysiteS171/myapp/views.py" />
     </list>
+    <list id="53dd1f25-8912-48ff-bafb-e49e2572f475" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,11 +34,33 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+            <state relative-caret-position="135">
+              <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/management/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="216" column="53" lean-forward="true" selection-start-line="216" selection-start-column="53" selection-end-line="216" selection-end-column="53" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -41,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+              <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
               <folding>
                 <element signature="e#29#61#0" expanded="true" />
               </folding>
@@ -52,9 +80,21 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="90">
+              <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,8 +119,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mysiteS171/myapp/views.py" />
         <option value="$PROJECT_DIR$/mysiteS171/myapp/admin.py" />
+        <option value="$PROJECT_DIR$/mysiteS171/myapp/forms.py" />
+        <option value="$PROJECT_DIR$/mysiteS171/myapp/views.py" />
+        <option value="$PROJECT_DIR$/mysiteS171/myapp/urls.py" />
         <option value="$PROJECT_DIR$/mysiteS171/myapp/models.py" />
       </list>
     </option>
@@ -91,7 +133,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -116,6 +158,11 @@
             <path>
               <item name="MysiteS2017-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="MysiteS2017-master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MysiteS2017-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MysiteS2017-master" type="462c0819:PsiDirectoryNode" />
+              <item name="management" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MysiteS2017-master" type="b2602c69:ProjectViewProjectNode" />
@@ -173,8 +220,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,11 +331,58 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="84" column="40" lean-forward="false" selection-start-line="84" selection-start-column="40" selection-end-line="84" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding>
+            <element signature="e#29#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mysiteS171/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -305,7 +399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -324,7 +417,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -336,10 +428,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/management/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="216" column="53" lean-forward="true" selection-start-line="216" selection-start-column="53" selection-end-line="216" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -347,17 +457,27 @@
     <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
           <folding>
             <element signature="e#29#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mysiteS171/myapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        <state relative-caret-position="135">
+          <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>

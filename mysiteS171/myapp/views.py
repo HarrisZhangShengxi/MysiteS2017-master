@@ -1,6 +1,6 @@
 from django.shortcuts import render,render_to_response
-from myapp.models import Author,Book,Student,Course,Topic
-from myapp.forms import TopicForm,InterestForm,StudentForm,RegisterForm
+from models import Announcement, Employee, Task, Project, Answer, Issue, Requirement
+# from forms import TopicForm,InterestForm, ManagerForm,RegisterForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView
@@ -19,9 +19,9 @@ from datetime import datetime
 
 #class_based view
 
-def IndexView(request):
+def AnnouncementView(request):
      # def get(self, request):
-        course_list = Course.objects.all()[:10]
+        acmt_list = Announcement.objects.all()[:10]
         # register_form = RegisterForm()
         # Deal with cookies
         # if request.session.get('last_visit'):
@@ -47,9 +47,11 @@ def IndexView(request):
         #         'count': count
         #
         #     }
-        return render(request,'myapp/index.html',{'courselist':course_list})
+        return render(request,'myapp/index.html',{'acmtlist':acmt_list})
 
-
+def RequirementView(request):
+    remt_list = Requirement.objects.all()[:10]
+    return render(request,'myapp/index.html',{'remtlist':remt_list})
 
 def about(request):
 
@@ -108,16 +110,16 @@ def topicdetail(request, topic_id):
     return render(request, 'myapp/topicdetail.html', {'form': form, 'topic': topic})
 
 def register(request):
-    studentlist = Student.objects.all()
+    employeelist = Employee.objects.all()
     if request.method == 'POST':
         form = RegisterForm(request.POST,request.FILES)
         if form.is_valid():
-            student = form.save(commit=False)
-            student.save()
+            employee = form.save(commit=False)
+            employee.save()
             return HttpResponseRedirect(reverse('myapp:index'))
     else:
         form = RegisterForm()
-    return render(request, 'myapp/register.html',{'form':form, 'studentlist':studentlist})
+    return render(request, 'myapp/register.html',{'form':form, 'employeelist':employeelist})
 
 
 def user_login(request):
