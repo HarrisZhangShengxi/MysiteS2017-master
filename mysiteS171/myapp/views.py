@@ -1,5 +1,5 @@
 from django.shortcuts import render,render_to_response
-from models import Announcement, Employee, Task, Project, Answer, Issue, Requirement
+from models import Announcement, User, Task, Project, Answer, Issue, Requirement
 # from forms import TopicForm,InterestForm, ManagerForm,RegisterForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -21,7 +21,7 @@ from datetime import datetime
 
 def AnnouncementView(request):
      # def get(self, request):
-        acmt_list = Announcement.objects.all()[:10]
+        acmt_list = Announcement.objects.all()
         # register_form = RegisterForm()
         # Deal with cookies
         # if request.session.get('last_visit'):
@@ -50,25 +50,19 @@ def AnnouncementView(request):
         return render(request,'myapp/index.html',{'acmtlist':acmt_list})
 
 def RequirementView(request):
-    remt_list = Requirement.objects.all()[:10]
+    remt_list = Requirement.objects.all()
     return render(request,'myapp/index.html',{'remtlist':remt_list})
 
-def about(request):
+def IssuesListView(request):
+    issue_list = Issue.objects.all()
+    return render(request, 'myapp/issues_list.html', {'issuelist':issue_list})
 
-    return render(request, 'myapp/about.html')
-
-#def Coursedetail(DetailView):
-#    model = Course
-#    context_object_name = 'course'
-#    template_name = 'myapp/detail.html'
-
-#class_based view
-def CourseDetailView(request, course_no):
+def IssueslView(request, course_no):
 # class CourseDetailView(View):
 #     def get(self,request,course_no):
 #         course=get_object_or_404(Course,course_no=course_no)
-    course = Course.objects.get(course_no=course_no)
-    return render(request, 'myapp/detail.html', {'course':course})
+#     course = Course.objects.get(course_no=course_no)
+    return render(request, 'myapp/issues.html')
 
 def base(request):
     return render_to_response('myapp/base.html',{'user':request.user})

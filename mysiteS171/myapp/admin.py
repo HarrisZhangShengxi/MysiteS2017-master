@@ -1,12 +1,12 @@
 # Register your models here.
 from django.contrib import admin
-from models import Announcement, Employee, Project, Task, Issue, Answer
+from models import Announcement, User, Project, Task, Issue, Answer
 # Register your models here.
 
 
 
 admin.site.register(Announcement)
-admin.site.register(Employee)
+admin.site.register(User)
 admin.site.register(Project)
 admin.site.register(Task)
 admin.site.register(Issue)
