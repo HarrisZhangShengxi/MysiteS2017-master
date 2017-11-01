@@ -57,22 +57,21 @@ def IssuesListView(request):
     issue_list = Issue.objects.all()
     return render(request, 'myapp/issues_list.html', {'issuelist':issue_list})
 
-def IssueslView(request, course_no):
-# class CourseDetailView(View):
-#     def get(self,request,course_no):
-#         course=get_object_or_404(Course,course_no=course_no)
-#     course = Course.objects.get(course_no=course_no)
+def IssuesDetail(request, issues_no):
+    issue = Issue.objects.filter(id=issues_no)
+    if request.method == 'POST':
+        form =
     return render(request, 'myapp/issues.html')
 
-def base(request):
-    return render_to_response('myapp/base.html',{'user':request.user})
+# def base(request):
+#     return render_to_response('myapp/base.html',{'user':request.user})
+#
+# def topics(request):
+#     topiclist = Topic.objects.all()[:10]
+#     return render(request,'myapp/topics.html',{'topiclist':topiclist})
 
-def topics(request):
-    topiclist = Topic.objects.all()[:10]
-    return render(request,'myapp/topics.html',{'topiclist':topiclist})
-
-def addtopic(request):
-    topiclist = Topic.objects.all()
+def AddPrject(request):
+    topiclist = Project.objects.all()
     if request.method == 'POST':
         form = TopicForm(request.POST)
         if form.is_valid():
