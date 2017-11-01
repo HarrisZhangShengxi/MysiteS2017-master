@@ -10,7 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class Project_EstaForm(forms.Form):
-
+    project_no = forms.CharField()
 
 class InterestForm(forms.Form):
     interested = forms.ChoiceField(widget=forms.RadioSelect(), choices=((1, 'Yes'), (0, 'No')))
