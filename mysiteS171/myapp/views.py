@@ -47,21 +47,21 @@ def AnnouncementView(request):
         #         'count': count
         #
         #     }
-        return render(request,'myapp/index.html',{'acmtlist':acmt_list})
+        return render(request,'myapp/management/index.html',{'acmtlist':acmt_list})
 
 def RequirementView(request):
     remt_list = Requirement.objects.all()
-    return render(request,'myapp/index.html',{'remtlist':remt_list})
+    return render(request,'myapp/management/index.html',{'remtlist':remt_list})
 
 def IssuesListView(request):
     issue_list = Issue.objects.all()
-    return render(request, 'myapp/issues_list.html', {'issuelist':issue_list})
+    return render(request, 'myapp/management/issues_list.html', {'issuelist':issue_list})
 
 def IssuesDetail(request, issues_no):
     issue = Issue.objects.filter(id=issues_no)
     if request.method == 'POST':
         form =
-    return render(request, 'myapp/issues.html')
+    return render(request, 'myapp/management/issues.html')
 
 # def base(request):
 #     return render_to_response('myapp/base.html',{'user':request.user})
