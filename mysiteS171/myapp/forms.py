@@ -1,5 +1,5 @@
 from django import forms
-from models import Announcement, User
+from models import Announcement, User, Issue
 from django.contrib.auth.forms import UserCreationForm
 # class AnnouncementForm(forms.ModelForm):
 #     class Meta:
@@ -9,14 +9,17 @@ from django.contrib.auth.forms import UserCreationForm
 #         label={'date':('Preferred Time'),'avg_age':('What is your age?'),'intro_course':('This should be an introductory level course')}
 
 
-class Project_EstaForm(forms.Form):
-    
+class SolutionForm(forms.Form):
+    class Meta:
+        model = Issue
+        fields = ['Comment']
+
 class InterestForm(forms.Form):
     interested = forms.ChoiceField(widget=forms.RadioSelect(), choices=((1, 'Yes'), (0, 'No')))
     age = forms.IntegerField(initial='20')
     comments = forms.CharField(required=False, widget=forms.Textarea, label='Additional Comments')
 
-class ManagerForm(forms.Form):
+class UserForm(forms.Form):
     class Meta:
         model = User
         fields = ['first_name','last_name','position','phone']

@@ -1,6 +1,6 @@
 from django.shortcuts import render,render_to_response
 from models import Announcement, User, Task, Project, Answer, Issue, Requirement
-# from forms import TopicForm,InterestForm, ManagerForm,RegisterForm
+from forms import SolutionForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView
@@ -47,28 +47,31 @@ def AnnouncementView(request):
         #         'count': count
         #
         #     }
-        return render(request,'myapp/management/index.html',{'acmtlist':acmt_list})
+        return render(request,'management/index.html',{'acmtlist':acmt_list})
 
 def RequirementView(request):
     remt_list = Requirement.objects.all()
-    return render(request,'myapp/management/index.html',{'remtlist':remt_list})
+    return render(request,'management/index.html',{'remtlist':remt_list})
 
 def IssuesListView(request):
     issue_list = Issue.objects.all()
-    return render(request, 'myapp/management/issues_list.html', {'issuelist':issue_list})
+    return render(request, 'management/issues_list.html', {'issuelist':issue_list})
 
 def IssuesDetail(request, issues_no):
     issue = Issue.objects.filter(id=issues_no)
-    if request.method == 'POST':
-        form =
-    return render(request, 'myapp/management/issues.html')
+    return render(request, 'management/issues.html', {'issue':issue})
 
-# def base(request):
-#     return render_to_response('myapp/base.html',{'user':request.user})
-#
-# def topics(request):
-#     topiclist = Topic.objects.all()[:10]
-#     return render(request,'myapp/topics.html',{'topiclist':topiclist})
+def Solution(request):
+    if request.method == 'POST':
+        form = SolutionForm(request.POST)
+        if form.is_valid():
+            solution = form.save(commit=False)
+            solution.num_responses = 1
+            solution.save()
+            return HttpResponseRedirect(reverse('management:issues'))
+    else:
+        form = SolutionForm()
+    return render(request, 'management/issues.html')
 
 def AddPrject(request):
     topiclist = Project.objects.all()
