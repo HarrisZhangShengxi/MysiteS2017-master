@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<!-------------------custom css-------------------->
 		<link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" media="screen" href="styles.css" >
 	</head>
 
 	<body>
@@ -208,18 +209,42 @@
 			<div class="container1">
 				<div class="leftpcontent">
 					<ul>
-						<li>NAME:</li>
-						<li>EMAIL:</li>
-						<li>PHONE:</li>
+                        <form class="profile_form" action="" method="post" name="profile_form">
+                            <li>
+                                <lable for="First Name">First Name:</lable>
+                                <input type="text" name="First Name" placeholder="mica" required/>
+
+                            </li>
+                            <li>
+                                <lable for="Last Name">Last Name:</lable>
+                                <input type="text" name="Last Name" placeholder="zhang" required/>
+
+                            </li>
+                            <li>
+                                <lable for="Email">Your Email:</lable>
+                                <input type="text" name="Email" placeholder="mica.zhang@outlook.com" required/>
+
+                            </li>
+                            <li>
+                                <lable for="Phone">Phone:</lable>
+                                <input type="text" name="Phone" placeholder="647-907-8656" />
+
+                            </li>
+                            <li>
+                                <button class="submit" type="submit">Submit Form</button>
+                            </li>
+                        </form>
 					</ul>
 				</div>
-				<div class="rightpcontent">
+                <div class="rightpcontent">
 					<ul>
-						<li></li>
-						<li></li>
-						<li></li>
+                   <!--     <li><input align=right type="submit" value="Submit" align="right" width="300"></li>-->
 					</ul>
 				</div>
+                <div>
+
+                </div>
+
 			</div>
 			<a href="#" id="return-to-top"><img src="images/backto.png" alt="image-missing"></a>
 		</div>
