@@ -59,7 +59,8 @@ def IssuesListView(request):
 
 def IssuesDetail(request, issues_no):
     issue = Issue.objects.filter(id=issues_no)
-    return render(request, 'management/issues.html', {'issue':issue})
+    answer = Answer.objects.filter(issue_no=issues_no)
+    return render(request, 'management/issues.html', {'issue':issue, 'solution':answer})
 
 def Solution(request):
     if request.method == 'POST':

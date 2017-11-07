@@ -55,9 +55,6 @@ class Project(models.Model):
     def __str__(self):
         return str(self.project_no)+' '+ self.name
 
-    # def __iter__(self):
-    #     return self.title
-
 class Task(models.Model):
     project_affiliation = models.ForeignKey(Project, null=True, blank=True)
     name = models.CharField(max_length=50)
@@ -85,10 +82,11 @@ class Issue(models.Model):
     object = models.CharField(max_length=1000)
     announcer = models.ForeignKey(User, unique=True)
     description = models.CharField(max_length=100000)
+    time =  models.DateTimeField()
     def __str__(self):
         return self.object
 
 class Answer(models.Model):
     answer = models.CharField(max_length=100000)
     replyer = models.ForeignKey(User, unique=True)
-    object_no = models.ForeignKey(Issue, null=True, blank=True)
+    issue_no = models.ForeignKey(Issue, unique=True)

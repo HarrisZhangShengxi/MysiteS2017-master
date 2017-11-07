@@ -230,48 +230,14 @@
 						<th>Time</th>
 					</tr>
 				</thead>
-				<tbody class="tbody1">
+                {% for obj in issuelist %}
+                    <tbody class="tbody1">
 					<tr class="solved">
-						<td><a href="issues.html#object1">Object1</a></td>
-						<td>Time1</td>
+						<td>{{ obj.object }}</td>
+						<td>{{ obj.time }}</td>
 					</tr>
-					<tr class="solved">
-						<td><a href="issues.html#object2">Object2</a></td>
-						<td>Time2</td>
-					</tr>
-					<tr class="solved">
-						<td><a href="issues.html#object3">Object3</a></td>
-						<td>Time3</td>
-					</tr>
-					<tr class="solved">
-						<td><a href="issues.html#object4">Object4</a></td>
-						<td>Time4</td>
-					</tr>
-					<tr class="solved">
-						<td><a href="issues.html#object5">Object5</a></td>
-						<td>Time5</td>
-					</tr>
-					<tr class="unsolved">
-						<td><a href="issues.html#object6">Object6</a></td>
-						<td>Time1</td>
-					</tr>
-					<tr class="unsolved">
-						<td><a href="issues.html#object7">Object7</a></td>
-						<td>Time2</td>
-					</tr>
-					<tr class="unsolved">
-						<td><a href="issues.html#object8">Object8</a></td>
-						<td>Time3</td>
-					</tr>
-					<tr class="unsolved">
-						<td><a href="issues.html#object9">Object9</a></td>
-						<td>Time4</td>
-					</tr>
-					<tr class="unsolved">
-						<td><a href="issues.html#object10">Object10</a></td>
-						<td>Time5</td>
-					</tr>
-				</tbody>
+                    </tbody>
+                {% endfor %}
 			</table>
 		</div>
 		<section class="contact_page">
