@@ -70,23 +70,27 @@
 					<div class="collapse navbar-collapse navbar-right" id="myMegamenu">
 						<ul class="nav navbar-nav">
 							<li class="list2">
-								<a href="index.html" class="hvr-underline-from-center">HOME</a>
+								<a href="index.html" class="hvr-underline-from-center" id="back">HOME</a>
 							</li>
-							<li class="list2">
-								<a href="profiles.html" class="hvr-underline-from-center">PROFILES</a>
+                            <li class="list2">
+                                <a href="task_creation.html" class="hvr-underline-from-center">CREATE A PROJECT</a>
 							</li>
-							<li class="list2">
-								<a href="project_establishment.html" class="hvr-underline-from-center">PROJECT ESTABLISHMENT</a>
-							</li>
-							<li class="list2">
-								<a href="task_creation.html" class="hvr-underline-from-center">TASK CREATION</a>
-							</li>
-							<li class="list2">
-								<a href="issues.html" class="hvr-underline-from-center">ISSUES</a>
+
+                            <li class="list2">
+								<a href="project_establishment.html" class="hvr-underline-from-center">PROJECT LIST</a>
 							</li>
 
 							<li class="list2">
-								<a href="issues_list.html" class="hvr-underline-from-center" id="back">ISSUES LIST</a>
+								<a href="issues.html" class="hvr-underline-from-center">ISSUES</a>
+							</li>
+							<li class="list2">
+								<a href="issues_list.html" class="hvr-underline-from-center">ISSUES LIST</a>
+							</li>
+                            <li class="list2">
+								<a href="solutions.html" class="hvr-underline-from-center">SOLUTIONS</a>
+							</li>
+                            <li class="list2">
+								<a href="profiles.html" class="hvr-underline-from-center">MEMBERS LIST</a>
 							</li>
 						</ul>
 					</div>
@@ -230,14 +234,14 @@
 						<th>Time</th>
 					</tr>
 				</thead>
-                {% for obj in issuelist %}
                     <tbody class="tbody1">
 					<tr class="solved">
-						<td>{{ obj.object }}</td>
-						<td>{{ obj.time }}</td>
+                        {% for obj in issuelist %}
+                            <td><a href="{% url 'management:issues' obj.id %}">{{ obj.object }}</a></td>
+						    <td>{{ obj.time }}</td>
+                        {% endfor %}
 					</tr>
                     </tbody>
-                {% endfor %}
 			</table>
 		</div>
 		<section class="contact_page">
@@ -252,16 +256,21 @@
 		</section>
 		<div class="container">
 			<div class="container1">
-				<dl>
-					<dd>Object:</dd>
-					<textarea rows="1" cols="50"> </textarea>
-
-				</dl>
-				<dl id="bigdl">
-					<dd>Decsription:</dd>
-					<textarea rows="8" cols="50"> </textarea>
-				</dl>
-				<button type="submit" form="#" value="Submit">Add Issues</button>
+                <form action="issues.html" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input type="submit" value="Submit">
+                </form>
+{#				<dl>#}
+{#					<dd>Object:</dd>#}
+{#					<textarea rows="1" cols="50"> </textarea>#}
+{##}
+{#				</dl>#}
+{#				<dl id="bigdl">#}
+{#					<dd>Decsription:</dd>#}
+{#					<textarea rows="8" cols="50"> </textarea>#}
+{#				</dl>#}
+{#				<button type="submit" form="#" value="Submit">Add Issues</button>#}
 			</div>
 		</div>
 			

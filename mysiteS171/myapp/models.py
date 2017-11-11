@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class Announcement(models.Model):
     title = models.CharField(max_length=100)
-    author = models.ForeignKey(User, unique=True)
+    author = models.ForeignKey(User)
     description = models.CharField(max_length=100000)
     date = models.DateTimeField()
     def __str__(self):
@@ -21,11 +21,11 @@ class Requirement(models.Model):
     def __str__(self):
         return self.title
 
-class User(User):
+class Employee(User):
     firstname = models.CharField(max_length=50, null=True, blank=True)
     lastname = models.CharField(max_length=50, null=True, blank=True)
     position = models.CharField(max_length=50, null=True, blank=True)
-    phone = models.IntegerField(max_length=15)
+    phone = models.IntegerField()
     def __str__(self):
         return self.first_name, self.last_name
 
@@ -80,7 +80,7 @@ class Task(models.Model):
 
 class Issue(models.Model):
     object = models.CharField(max_length=1000)
-    announcer = models.ForeignKey(User, unique=True)
+    announcer = models.ForeignKey(User)
     description = models.CharField(max_length=100000)
     time =  models.DateTimeField()
     def __str__(self):
@@ -88,5 +88,5 @@ class Issue(models.Model):
 
 class Answer(models.Model):
     answer = models.CharField(max_length=100000)
-    replyer = models.ForeignKey(User, unique=True)
-    issue_no = models.ForeignKey(Issue, unique=True)
+    replyer = models.ForeignKey(User)
+    issue = models.ForeignKey(Issue)
