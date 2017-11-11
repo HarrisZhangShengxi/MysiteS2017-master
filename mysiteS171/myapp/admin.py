@@ -1,6 +1,6 @@
 # Register your models here.
 from django.contrib import admin
-from models import Announcement, User, Project, Task, Issue, Answer
+from .models import Announcement, User, Project, Task, Issue, Answer
 # Register your models here.
 
 

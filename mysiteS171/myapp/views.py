@@ -1,6 +1,6 @@
 from django.shortcuts import render,render_to_response
-from models import Announcement, User, Task, Project, Answer, Issue, Requirement
-from forms import SolutionForm
+from .models import Announcement, User, Task, Project, Answer, Issue, Requirement
+from .forms import SolutionForm,ProjectForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView
@@ -78,14 +78,14 @@ def AddProject(request):
     #topiclist = Project.objects.all()
     if request.method == 'POST':
         form = ProjectForm(request.POST)
-       # if form.is_valid():
-        #    project = form.save(commit=False)
-         #   topic.num_responses = 1
-          #  topic.save()
-           # return HttpResponseRedirect(reverse('management:'))
+        if form.is_valid():
+            form.save(commit=False)
+            #topic.num_responses = 1
+            #topic.save()
+            #return HttpResponseRedirect(reverse('management:'))
     else:
         form = ProjectForm()
-    return render(request, 'management/task_creation.html',{'form':form})
+    return render(request, 'management/task_creation1.html',{'form':form})
 
 def topicdetail(request, topic_id):
     topic = Topic.objects.filter(id=topic_id)

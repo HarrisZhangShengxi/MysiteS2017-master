@@ -1,5 +1,5 @@
 from django import forms
-from models import Announcement, User, Issue, Project
+from .models import Announcement, User, Project, Task, Issue, Answer
 from django.contrib.auth.forms import UserCreationForm
 # class AnnouncementForm(forms.ModelForm):
 #     class Meta:
@@ -8,6 +8,11 @@ from django.contrib.auth.forms import UserCreationForm
 #         widget={'date':forms.RadioSelect()}
 #         label={'date':('Preferred Time'),'avg_age':('What is your age?'),'intro_course':('This should be an introductory level course')}
 
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['project_no','name','leader','start_date','end_date','phase','description']
 
 class SolutionForm(forms.Form):
     class Meta:
@@ -30,8 +35,3 @@ class RegisterForm(UserCreationForm):
         fields=['username','first_name','last_name','email','position','phone']
 
 
-
-class ProjectForm(forms.Form):
-    class Meta:
-        model = Project
-        fields = ['project_no','name','leader','start_data','end_date','phase','description']
