@@ -75,17 +75,17 @@ def Solution(request):
     return render(request, 'management/issues.html')
 
 def AddProject(request):
-    topiclist = Project.objects.all()
+    #topiclist = Project.objects.all()
     if request.method == 'POST':
-        form = TopicForm(request.POST)
-        if form.is_valid():
-            topic = form.save(commit=False)
-            topic.num_responses = 1
-            topic.save()
-            return HttpResponseRedirect(reverse('management:'))
+        form = ProjectForm(request.POST)
+       # if form.is_valid():
+        #    project = form.save(commit=False)
+         #   topic.num_responses = 1
+          #  topic.save()
+           # return HttpResponseRedirect(reverse('management:'))
     else:
-        form = TopicForm()
-    return render(request, 'myapp/addtopic.html',{'form':form, 'topiclist':topiclist})
+        form = ProjectForm()
+    return render(request, 'management/task_creation.html',{'form':form})
 
 def topicdetail(request, topic_id):
     topic = Topic.objects.filter(id=topic_id)

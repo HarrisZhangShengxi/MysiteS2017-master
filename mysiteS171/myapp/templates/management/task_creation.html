@@ -211,7 +211,12 @@
 		</section>
 		<div class="container">
 			<div class="container1">
-				<dl>
+				<form action="" method="post">
+                    {%  csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="submit"/>
+                </form>
+               <!--- <dl>
 					<dd>Project Name: </dd>
 					<dt></dt>
 					<dd>Project: </dd>
@@ -242,7 +247,7 @@
         						<li role="presentation">
             						<a role="menuitem" tabindex="-1" href="#">3</a>
         						</li>
-        						<!--<li role="presentation" class="divider"></li>-->
+        						<li role="presentation" class="divider"></li>
         						<li role="presentation">
             						<a role="menuitem" tabindex="-1" href="#">4</a>
         						</li>
@@ -253,7 +258,7 @@
 				<dl id="bigdl">
 					<dd>Project Description: </dd>
 					<dt id="bigdt"></dt>
-				</dl>
+				</dl> --->
 			</div>
 			<a href="#" id="return-to-top"><img src="images/backto.png" alt="image-missing"></a>
 		</div>
