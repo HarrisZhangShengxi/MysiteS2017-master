@@ -1,5 +1,6 @@
 from django import forms
 from models import Announcement, Employee, Issue, Answer
+from models import Announcement, User, Issue, Project
 from django.contrib.auth.forms import UserCreationForm
 
 class AnnouncementForm(forms.Form):
@@ -33,3 +34,10 @@ class RegisterForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = Employee
         fields=['username','first_name','last_name','email','position','phone']
+        model = User
+        fields=['username','first_name','last_name','email','position','phone']
+
+class ProjectForm(forms.Form):
+    class Meta:
+        model = Project
+        fields = ['project_no','name','leader','start_data','end_date','phase','description']
