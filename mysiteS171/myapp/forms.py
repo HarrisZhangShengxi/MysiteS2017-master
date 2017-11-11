@@ -1,13 +1,23 @@
 from django import forms
-from .models import Announcement, User, Project, Task, Issue, Answer
-from django.contrib.auth.forms import UserCreationForm
-# class AnnouncementForm(forms.ModelForm):
-#     class Meta:
-#         model=Announcement
-#         fields=['title','description','date']
-#         widget={'date':forms.RadioSelect()}
-#         label={'date':('Preferred Time'),'avg_age':('What is your age?'),'intro_course':('This should be an introductory level course')}
 
+from .models import Announcement, User, Project, Task, Issue, Answer
+
+from django.contrib.auth.forms import UserCreationForm
+
+class AnnouncementForm(forms.Form):
+
+    title = forms.CharField(label='Title', max_length=10000)
+    author = forms.CharField(label='Author', max_length=50)
+    description = forms.CharField(label='Description', widget=forms.Textarea)
+
+class RequirementForm(forms.Form):
+    title = forms.CharField(label='Title', max_length=10000)
+    costumer = forms.CharField(label='Costumer', max_length=50)
+    description = forms.CharField(label='Description', widget=forms.Textarea)
+
+class IssuesForm(forms.Form):
+    object = forms.CharField(label='Object', widget=forms.Textarea)
+    description = forms.CharField(label='Description', widget=forms.Textarea)
 
 class ProjectForm(forms.ModelForm):
     class Meta:
@@ -15,9 +25,7 @@ class ProjectForm(forms.ModelForm):
         fields = ['project_no','name','leader','start_date','end_date','phase','description']
 
 class SolutionForm(forms.Form):
-    class Meta:
-        model = Issue
-        fields = ['Comment']
+    add_solution = forms.CharField(label='Add Solution', widget=forms.Textarea)
 
 class InterestForm(forms.Form):
     interested = forms.ChoiceField(widget=forms.RadioSelect(), choices=((1, 'Yes'), (0, 'No')))
@@ -32,6 +40,7 @@ class UserForm(forms.Form):
 class RegisterForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = User
-        fields=['username','first_name','last_name','email','position','phone']
+        fields=['username','first_name','last_name','email']
+
 
 

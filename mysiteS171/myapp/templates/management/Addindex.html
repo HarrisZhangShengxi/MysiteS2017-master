@@ -1,20 +1,20 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 	<head>
 		<meta charset="UTF-8">
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-		<title>ISSUES</title>
+		<title>Add</title>
 		<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-		<!-----------------Global css------------------>
+		<!----------------Global css------------------->
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<!----------------Custom css------------------->
+		<!----------------custo css----------------->
 		<link rel="stylesheet" href="css/custom.css">
 	</head>
 
 	<body>
-		<!----------------Preloader--------------->
+		<!-------------------Preloader---------------->
 		<div class="preloader" style="position:fixed;
     width:100%;
     height:100%;
@@ -33,7 +33,8 @@
 				<img src="images/loader.gif" alt="loading...">
 			</div>
 		</div>
-		<!-----------------Preloader end------------------>
+		<!----------------Preloader end----------------->
+		<!-------------Header--------->
 		<div class="tp-header">
 			<div class="container">
 				<div class="row">
@@ -45,8 +46,8 @@
 					</div>
 					<div class="col-xs-5 col-md-6 text-right">
 						<span class="signin" data-toggle="modal" data-target="#myModal"><span class="hidden-xs">Sign In</span><i class="fa fa-sign-in visible-xs-block" aria-hidden="true"></i> </span>
-						<span class="register" data-toggle="modal" data-target="#myModal"><span
-                        class="hidden-xs">Register</span><i class="fa fa-user-plus visible-xs-block" aria-hidden="true"></i></span>
+						<span class="register" data-toggle="modal" data-target="#myModal"><span class="hidden-xs">Register</span><i class="fa fa-user-plus visible-xs-block" aria-hidden="true"></i></span>
+
 					</div>
 				</div>
 			</div>
@@ -71,25 +72,21 @@
 							<li class="list2">
 								<a href="index.html" class="hvr-underline-from-center" id="back">HOME</a>
 							</li>
-                            <li class="list2">
-                                <a href="task_creation.html" class="hvr-underline-from-center">CREATE A PROJECT</a>
+							<li class="list2">
+								<a href="profiles.html" class="hvr-underline-from-center">PROFILES</a>
 							</li>
-
-                            <li class="list2">
-								<a href="project_establishment.html" class="hvr-underline-from-center">PROJECT LIST</a>
+							<li class="list2">
+								<a href="project_establishment.html" class="hvr-underline-from-center">PROJECT ESTABLISHMENT</a>
 							</li>
-
+							<li class="list2">
+								<a href="task_creation.html" class="hvr-underline-from-center">TASK CREATION</a>
+							</li>
 							<li class="list2">
 								<a href="issues.html" class="hvr-underline-from-center">ISSUES</a>
 							</li>
+							
 							<li class="list2">
 								<a href="issues_list.html" class="hvr-underline-from-center">ISSUES LIST</a>
-							</li>
-                            <li class="list2">
-								<a href="solutions.html" class="hvr-underline-from-center">SOLUTIONS</a>
-							</li>
-                            <li class="list2">
-								<a href="profiles.html" class="hvr-underline-from-center">MEMBERS LIST</a>
 							</li>
 						</ul>
 					</div>
@@ -97,6 +94,7 @@
 				</nav>
 			</div>
 		</header>
+
 		<!--Login And Register Modal-->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog modal-sm">
@@ -196,48 +194,46 @@
 			</div>
 		</div>
 		<!--Login And Register Modal-->
+
 		<!----------------Body Section Start---------------------->
 		<section class="contact_page">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6 col-sm-offset-3 m-t-50">
-						<h1 class="underline heading">Issues</h1>
+						<h1 class="underline heading">Add</h1>
 					</div>
 				</div>
 
 			</div>
 		</section>
 		<div class="container">
-			<div class="container1" id="object1">
-				<dl>
-					<dd>Object:</dd>
-					<dt id="longdt">{{ issue.object }}</dt>
-				</dl>
-				<dl id="bigdl">
-					<dd>Decsription:</dd>
-					<dt id="bigdt">{{ issue.desrciption }}<br /></dt>
-				</dl>
-				<div class="dividediv"></div>
-                {% for obj in solution %}
-				<dl id="bigdl">{{ obj.answer }}</dl>
-                <dl id="bigdl">{{ obj.replyer }}</dl>
-{#				<dl id="bigdl">{{ obj.answer }}</dl>#}
-                {% endfor %}
-				<dl id="bigdl">
-                    <form action="issues.html" method="post">
+			<div class="container1"> 
+				<div class="container1_1">
+                    <form action="index.html" method="post">
                         {% csrf_token %}
-                        {{ form }}
-                        <input type="submit" value="OK">
+                        {{ Aform }}
+                        <input type="submit" value="Submit">
                     </form>
-{#					<dd> Add Solution:</dd>#}
-{#					<textarea rows="8" cols="50"> </textarea>#}
-				</dl>
-{#				<button type="submit" form="#" value="Submit">Submit Solutions</button>#}
+{#					<div class="leftcontent">Announcement</div>#}
+{#					<textarea rows="10" cols="50"> </textarea>#}
+				</div>
+				<div class="container1_2">
+					<div class="leftcontent1"></div>
+					<div class="rightcontent1"></div>
+				</div>
+				<div class="container1_1">
+                    <form action="index.html" method="post">
+                        {% csrf_token %}
+                        {{ Rform }}
+                        <input type="submit" value="Submit">
+                    </form>
+{#					<div class="leftcontent">Requirement</div>#}
+{#					<textarea rows="10" cols="50"> </textarea>#}
+				</div>
+{#				<button type="submit" form="#" value="Submit">Submit</button>#}
 			</div>
-			
 			<a href="#" id="return-to-top"><img src="images/backto.png" alt="image-missing"></a>
 		</div>
-
 		<!----------------Body Section End---------------------->
 		<!--------------Footer Start--------------->
 		<!------------Footer Caret Shape------------>
@@ -365,12 +361,22 @@
 			</div>
 		</section>
 		<!------------------Copy rights End------------------>
+		<script>
+			$(document).ready(function() {
+				$(".signin").mouseenter(function() {
+					$(this).css("background-color", "red");
+				});
+				$(".signin").mouseleave(function() {
+					$(this).css("background-color", "green");
+				});
+			});
+		</script>
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-
-		<!-------------Page Level Js------------------->
+		<!----------------------page Level Js-------------------------->
 		<script src="js/custom.js"></script>
+
 	</body>
 
 </html>

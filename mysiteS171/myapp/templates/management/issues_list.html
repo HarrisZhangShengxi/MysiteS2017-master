@@ -234,14 +234,14 @@
 						<th>Time</th>
 					</tr>
 				</thead>
-                {% for obj in issuelist %}
                     <tbody class="tbody1">
 					<tr class="solved">
-						<td>{{ obj.object }}</td>
-						<td>{{ obj.time }}</td>
+                        {% for obj in issuelist %}
+                            <td><a href="{% url 'management:issues' obj.id %}">{{ obj.object }}</a></td>
+						    <td>{{ obj.time }}</td>
+                        {% endfor %}
 					</tr>
                     </tbody>
-                {% endfor %}
 			</table>
 		</div>
 		<section class="contact_page">
@@ -256,16 +256,21 @@
 		</section>
 		<div class="container">
 			<div class="container1">
-				<dl>
-					<dd>Object:</dd>
-					<textarea rows="1" cols="50"> </textarea>
-
-				</dl>
-				<dl id="bigdl">
-					<dd>Decsription:</dd>
-					<textarea rows="8" cols="50"> </textarea>
-				</dl>
-				<button type="submit" form="#" value="Submit">Add Issues</button>
+                <form action="issues.html" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input type="submit" value="Submit">
+                </form>
+{#				<dl>#}
+{#					<dd>Object:</dd>#}
+{#					<textarea rows="1" cols="50"> </textarea>#}
+{##}
+{#				</dl>#}
+{#				<dl id="bigdl">#}
+{#					<dd>Decsription:</dd>#}
+{#					<textarea rows="8" cols="50"> </textarea>#}
+{#				</dl>#}
+{#				<button type="submit" form="#" value="Submit">Add Issues</button>#}
 			</div>
 		</div>
 			
