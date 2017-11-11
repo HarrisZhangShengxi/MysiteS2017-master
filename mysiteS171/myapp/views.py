@@ -74,7 +74,7 @@ def Solution(request):
         form = SolutionForm()
     return render(request, 'management/issues.html')
 
-def AddPrject(request):
+def AddProject(request):
     topiclist = Project.objects.all()
     if request.method == 'POST':
         form = TopicForm(request.POST)
@@ -82,7 +82,7 @@ def AddPrject(request):
             topic = form.save(commit=False)
             topic.num_responses = 1
             topic.save()
-            return HttpResponseRedirect(reverse('myapp:topics'))
+            return HttpResponseRedirect(reverse('management:'))
     else:
         form = TopicForm()
     return render(request, 'myapp/addtopic.html',{'form':form, 'topiclist':topiclist})
