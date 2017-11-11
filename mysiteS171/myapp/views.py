@@ -1,6 +1,6 @@
 from django.shortcuts import render,render_to_response
 from models import Announcement, Employee, Task, Project, Answer, Issue, Requirement
-from forms import SolutionForm, IssuesForm, AnnouncementForm, RequirementForm
+from forms import SolutionForm, IssuesForm, AnnouncementForm, RequirementForm, ProjectForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView
