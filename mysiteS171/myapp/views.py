@@ -12,22 +12,57 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
 # Create your views here.
-def AddProject(request):
-    #topiclist = Project.objects.all()
-    #if request.method == 'POST':
-    #form = ProjectForm(request.POST)
-    #if form.is_valid():
-    #    project = form.save(commit=False)
-            #topic.num_responses = 1
-     #   project.save()
-            #return HttpResponseRedirect(reverse('management:'))
-
-    return render(request, 'management/task_creation.html')
+def base(request):
+    return render(request,'management/base.html')
 
 def IndexView(request):
     acmt_list = Announcement.objects.all()
     remt_list = Requirement.objects.all()
     return render(request,'management/index.html',{'acmtlist':acmt_list, 'remtlist':remt_list})
+
+def AddProject(request):
+    #topiclist = Project.objects.all()
+    #if request.method == 'POST':
+    form = ProjectForm(request.POST)
+    if form.is_valid():
+        project = form.save(commit=False)
+            #topic.num_responses = 1
+        project.save()
+            #return HttpResponseRedirect(reverse('management:'))
+
+    return render(request, 'management/addprojects.html',{'form':form})
+
+def Project_list(request):
+    Project_list = Project.objects.all()[:10]
+    return render(request, 'management/projects_list.html', {'Project_list': Project_list})
+
+def Issues_Detail(request):
+    issue = Issue.objects.all()
+    answer = Issue.objects.values_list("object", flat=True)
+    return render(request, 'management/issues.html', {'issue':issue, 'solution':answer})
+
+
+def Issues_list(request):
+    issue_list = Issue.objects.all()
+    return render(request, 'management/issues_list.html', {'issuelist':issue_list})
+
+
+def Solution(request):
+    if request.method == 'POST':
+        form = SolutionForm(request.POST)
+        if form.is_valid():
+            solution = form.save(commit=False)
+            solution.num_responses = 1
+            solution.save()
+            return HttpResponseRedirect(reverse('management:solutions'))
+    else:
+        form = SolutionForm()
+    return render(request, 'management/solutions.html', {'form':form})
+
+
+def Profiles(request):
+    profiles_info = Profiles.objects.all()[:10]
+    return render(request, 'management/profiles.html', {'profiles_info': profiles_info})
 
 def AddAnRe(request):
     if request.method == 'POST':
@@ -50,14 +85,7 @@ def AddAnRe(request):
             Rform = RequirementForm()
         return render(request, 'management/index.html', {'Aform':Aform, 'Rform':Rform})
 
-def IssuesListView(request):
-    issue_list = Issue.objects.all()
-    return render(request, 'management/issues_list.html', {'issuelist':issue_list})
 
-def IssuesDetail(request, id):
-    issue = Issue.objects.get(id=id)
-    answer = Issue.objects.values_list("object", flat=True)
-    return render(request, 'management/issues.html', {'issue':issue, 'solution':answer})
 
 def AddIssues(request):
     if request.method == 'POST':
@@ -70,18 +98,6 @@ def AddIssues(request):
         else:
             form = IssuesForm()
         return render(request, 'management/issues_list.html', {'form': form})
-
-def Solution(request):
-    if request.method == 'POST':
-        form = SolutionForm(request.POST)
-        if form.is_valid():
-            solution = form.save(commit=False)
-            solution.num_responses = 1
-            solution.save()
-            return HttpResponseRedirect(reverse('management:issues'))
-    else:
-        form = SolutionForm()
-    return render(request, 'management/issues.html', {'form':form})
 
 
 

@@ -1,0 +1,35 @@
+{% extends 'management/base.html' %}
+
+{% block body_block %}
+
+		<!----------------Body Section Start---------------------->
+		<section class="contact_page">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3 m-t-50">
+						<h1 class="underline heading">Project Establishment</h1>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<div class="container">
+			<div class="container1">
+				 <ul>
+                {% for projects in Project_list %}
+                    <div class="container2" color = 'red'>
+                    <li>Project Number:  {{ projects.project_no }}  </li>
+                    <li>Project Name:  {{ projects.name }}</li>
+                    <li>Start date:  {{ projects.start_date }}</li>
+                    <li>End date:  {{ projects.end_date }}</li>
+                    <li>Phase:  {{ projects.phase }}</li>
+                    <li>Description:  {{ projects.description }}</li>
+                    </div>
+                {% endfor %}
+                 </ul>
+            </div>
+			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
+		</div>
+
+		<!----------------Body Section End---------------------->
+{% endblock %}

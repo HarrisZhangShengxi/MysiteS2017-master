@@ -1,16 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 
 	<head>
 		<meta charset="UTF-8">
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-		<title>PROJECT ESTABLISHMENT</title>
-		<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+
+		<link rel="icon" type="image/png" sizes="32x32" href="../../static/myapp/images/favicon-32x32.png">
 		<!-----------------Global css------------------>
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../static/myapp/css/bootstrap.css">
+		<link rel="stylesheet" href="../../static/myapp/css/font-awesome.min.css">
 		<!-------------------custom css-------------------->
-		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="../../static/myapp/css/custom.css">
 
 	</head>
 
@@ -31,7 +32,7 @@
     top: 50%;
     background-position: center;
     margin:-25px 0 0 -25px;">
-				<img src="images/loader.gif" alt="loading...">
+				<img src="../../static/myapp/images/loader.gif" alt="loading...">
 			</div>
 		</div>
 		<!------------------Preloader end------------------->
@@ -64,33 +65,33 @@
 
                 </button>
 						<a class="navbar-brand" href="index.html">
-							<img src="images/03.png" class="img-responsive" alt="company-logo" width="170px" height="120px">
+							<img src="../../static/myapp/images/03.png" class="img-responsive" alt="company-logo" width="170px" height="120px">
 						</a>
 					</div>
 					<div class="collapse navbar-collapse navbar-right" id="myMegamenu">
 						<ul class="nav navbar-nav">
 							<li class="list2">
-								<a href="index.html" class="hvr-underline-from-center" id="back">HOME</a>
+								<a href="/myapp/index/" class="hvr-underline-from-center" id="back">HOME</a>
 							</li>
                             <li class="list2">
-                                <a href="task_creation.html" class="hvr-underline-from-center">CREATE A PROJECT</a>
+                                <a href="/myapp/addprojects/" class="hvr-underline-from-center">CREATE A PROJECT</a>
 							</li>
 
                             <li class="list2">
-								<a href="project_establishment.html" class="hvr-underline-from-center">PROJECT LIST</a>
+								<a href="/myapp/projects_list/" class="hvr-underline-from-center">PROJECT LIST</a>
 							</li>
 
 							<li class="list2">
-								<a href="issues.html" class="hvr-underline-from-center">ISSUES</a>
+								<a href="/myapp/issues/" class="hvr-underline-from-center">ISSUES</a>
 							</li>
 							<li class="list2">
-								<a href="issues_list.html" class="hvr-underline-from-center">ISSUES LIST</a>
+								<a href="/myapp/issues_list/" class="hvr-underline-from-center">ISSUES LIST</a>
 							</li>
                             <li class="list2">
-								<a href="solutions.html" class="hvr-underline-from-center">SOLUTIONS</a>
+								<a href="/myapp/solutions/" class="hvr-underline-from-center">SOLUTIONS</a>
 							</li>
                             <li class="list2">
-								<a href="profiles.html" class="hvr-underline-from-center">MEMBERS LIST</a>
+								<a href="/myapp/profiles/" class="hvr-underline-from-center">MEMBERS INFO</a>
 							</li>
 						</ul>
 					</div>
@@ -198,71 +199,18 @@
 		</div>
 		<!--Login And Register Modal-->
 
-		<!----------------Body Section Start---------------------->
-		<section class="contact_page">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-sm-offset-3 m-t-50">
-						<h1 class="underline heading">Project Establishment</h1>
-					</div>
-				</div>
 
-			</div>
-		</section>
-		<div class="container">
-			<div class="container1">
-				<dl>
-					<dd>Project Name: </dd>
-					<dt></dt>
-					<dd>Project Number: </dd>
-					<dt></dt>
-				</dl>
-				<dl>
-					<dd>Project Leader: </dd>
-					<dt></dt>
-				</dl>
-				<dl>
-					<dd>Project Start Time: </dd>
-					<dt></dt>
-					<dd>Project End Time: </dd>
-					<dt></dt>
-				</dl>
-				<dl>
-					<dd>The phase: </dd>
-					<dt></dt>
-				</dl>
-				<dl>
-					<dd>Project Member: </dd>
-					<dt>
-						<div class="dropdown">
-							<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">Project Number<span class="caret"></span></button>
-							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-								<li role="presentation">
-									<a role="menuitem" tabindex="-1" href="#">001</a>
-        						</li>
-        						<li role="presentation">
-            						<a role="menuitem" tabindex="-1" href="#">002</a>
-        						</li>
-        						<li role="presentation">
-            						<a role="menuitem" tabindex="-1" href="#">003</a>
-        						</li>
-        						<!--<li role="presentation" class="divider"></li>-->
-        						<li role="presentation">
-            						<a role="menuitem" tabindex="-1" href="#">004</a>
-        						</li>
-    						</ul>
-						</div>
-					</dt>
-				</dl>
-				<dl id="bigdl">
-					<dd>Project Description: </dd>
-					<dt id="bigdt"></dt>
-				</dl>
-			</div>
-			<a href="#" id="return-to-top"><img src="images/backto.png" alt="image-missing"></a>
-		</div>
-		<!----------------Body Section End---------------------->
-		<!--------------Footer Start--------------->
+
+
+		<!----------------Body Section Start---------------------->
+        {% block body_block %}***{% endblock %}
+        <!----------------Body Section End---------------------->
+
+
+
+
+
+      <!--------------Footer Start--------------->
 		<!------------Footer Caret Shape------------>
 		<div class="shape section-top-50"></div>
 		<!------------Footer Caret Shape end------------>
@@ -375,8 +323,8 @@
 						<p class="footer_text_color">
 							<a href="index.html">Home</a> &nbsp;
 							<a href="profiles.html">Profiles</a> &nbsp;
-							<a href="project_establishment.html">Project Establishment</a> &nbsp;
-							<a href="task_creation.html">Task Creation</a>
+							<a href="projects_list.html">Project Establishment</a> &nbsp;
+							<a href="addprojects.html">Task Creation</a>
 						</p>
 					</div>
 					<div class="col-xs-12 col-sm-6 text-right section-top-15">
@@ -384,17 +332,31 @@
 						<p class="footer_text_color  ">Copyright &copy; 2017. All rights reserved.</p>
 					</div>
 				</div>
-				<a href="#" id="return-to-top"><img src="images/backto.png" alt="image-missing"></a>
+				<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
 			</div>
 		</section>
 		<!------------------Copy rights End------------------>
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		<script src="../../static/myapp/js/jquery.min.js"></script>
+		<script src="../../static/myapp/js/bootstrap.min.js"></script>
 
 		<!----------------Page Level JS-------------------->
-		<script src="js/custom.js"></script>
+		<script src="../../static/myapp/js/custom.js"></script>
 
 	</body>
 
 </html>
+
+
+{#        <hr />#}
+{#        <div>#}
+{#            <ul>#}
+{#                <li class="hbar1"><a href="/myapp/about/">Find out about this site</a></li>#}
+{#                <li class="hbar1"><a href = "{% url 'myapp:index' %}">Click here to return to main page</a></li>#}
+{#                <li class="hbar1"><a href="{% url 'myapp:topics' %}">Click here for interesting topic</a><br/></li>#}
+{#                {% if  request.user.is_authenticated %}#}
+{#                    <li class="hbar1"><a href="{% url 'myapp:mycourses' %}">Click here for review my courses</a></li>#}
+{#                {% endif %}#}
+{##}
+{#            </ul>#}
+{#        </div>#}
