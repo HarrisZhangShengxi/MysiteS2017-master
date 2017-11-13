@@ -13,12 +13,12 @@ from datetime import datetime
 
 # Create your views here.
 def base(request):
-    return render(request,'management/base.html')
+    return render(request, 'myapp/base.html')
 
 def IndexView(request):
     acmt_list = Announcement.objects.all()
     remt_list = Requirement.objects.all()
-    return render(request,'management/index.html',{'acmtlist':acmt_list, 'remtlist':remt_list})
+    return render(request, 'myapp/index.html', {'acmtlist':acmt_list, 'remtlist':remt_list})
 
 def AddProject(request):
     #topiclist = Project.objects.all()
@@ -28,23 +28,23 @@ def AddProject(request):
         project = form.save(commit=False)
             #topic.num_responses = 1
         project.save()
-            #return HttpResponseRedirect(reverse('management:'))
+            #return HttpResponseRedirect(reverse('myapp:'))
 
-    return render(request, 'management/addprojects.html',{'form':form})
+    return render(request, 'myapp/addprojects.html', {'form':form})
 
 def Project_list(request):
     Project_list = Project.objects.all()[:10]
-    return render(request, 'management/projects_list.html', {'Project_list': Project_list})
+    return render(request, 'myapp/projects_list.html', {'Project_list': Project_list})
 
 def Issues_Detail(request, id):
     issue = Issue.objects.get(id=id)
     answer = issue.answer_set.all()
-    return render(request, 'management/issues.html', {'issue':issue, 'solution':answer})
+    return render(request, 'myapp/issues.html', {'issue':issue, 'solution':answer})
 
 
 def Issues_list(request):
     issue_list = Issue.objects.all()
-    return render(request, 'management/issues_list.html', {'issuelist':issue_list})
+    return render(request, 'myapp/issues_list.html', {'issuelist':issue_list})
 
 
 def Solution(request):
@@ -54,15 +54,15 @@ def Solution(request):
             solution = form.save(commit=False)
             solution.num_responses = 1
             solution.save()
-            return HttpResponseRedirect(reverse('management:solutions'))
+            return HttpResponseRedirect(reverse('myapp:solutions'))
     else:
         form = SolutionForm()
-    return render(request, 'management/solutions.html', {'form':form})
+    return render(request, 'myapp/solutions.html', {'form':form})
 
 
 def Profiles(request):
     profiles_info = Profiles.objects.all()[:10]
-    return render(request, 'management/profiles.html', {'profiles_info': profiles_info})
+    return render(request, 'myapp/profiles.html', {'profiles_info': profiles_info})
 
 def AddAnRe(request):
     if request.method == 'POST':
@@ -71,7 +71,7 @@ def AddAnRe(request):
             announcement = Aform.save(commit=False)
             announcement.num_responses = 1
             announcement.save()
-            return HttpResponseRedirect(reverse('management:index'))
+            return HttpResponseRedirect(reverse('myapp:index'))
         else:
             Aform = AnnouncementForm()
 
@@ -80,10 +80,10 @@ def AddAnRe(request):
             requirement = Rform.save(commit=False)
             requirement.num_responses = 1
             requirement.save()
-            return HttpResponseRedirect(reverse('management:index'))
+            return HttpResponseRedirect(reverse('myapp:index'))
         else:
             Rform = RequirementForm()
-        return render(request, 'management/index.html', {'Aform':Aform, 'Rform':Rform})
+        return render(request, 'myapp/index.html', {'Aform':Aform, 'Rform':Rform})
 
 
 
@@ -94,10 +94,10 @@ def AddIssues(request):
             issue = form.save(commit=False)
             issue.num_responses = 1
             issue.save()
-            return HttpResponseRedirect(reverse('management:issues_list'))
+            return HttpResponseRedirect(reverse('myapp:issues_list'))
         else:
             form = IssuesForm()
-        return render(request, 'management/issues_list.html', {'form': form})
+        return render(request, 'myapp/issues_list.html', {'form': form})
 
 
 
