@@ -6,7 +6,7 @@ urlpatterns = [
         url(r'^index/$', views.IndexView),
         url(r'^addprojects/$',views.AddProject),
         url(r'^projects_list/$',views.Project_list),
-        url(r'^issues/$', views.Issues_Detail),
+        url(r'^issues/(?P<id>\d+)$', views.Issues_Detail),
         url(r'^issues_list/$', views.Issues_list),
         url(r'^solutions/$', views.Solution),
         url(r'^profiles/$', views.Profiles),

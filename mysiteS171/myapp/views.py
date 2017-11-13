@@ -1,6 +1,6 @@
 from django.shortcuts import render,render_to_response
 
-from .models import Announcement, Task, Project, Answer, Issue, Requirement
+from .models import Announcement, Task, Project, Answer, Issue, Requirement, Employee
 from .forms import SolutionForm,ProjectForm, AnnouncementForm,RequirementForm,IssuesForm,InterestForm,RegisterForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -36,9 +36,9 @@ def Project_list(request):
     Project_list = Project.objects.all()[:10]
     return render(request, 'management/projects_list.html', {'Project_list': Project_list})
 
-def Issues_Detail(request):
-    issue = Issue.objects.all()
-    answer = Issue.objects.values_list("object", flat=True)
+def Issues_Detail(request, id):
+    issue = Issue.objects.get(id=id)
+    answer = issue.answer_set.all()
     return render(request, 'management/issues.html', {'issue':issue, 'solution':answer})
 
 
