@@ -2,14 +2,15 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-        url(r'^base/$', views.base),
-        url(r'^index/$', views.IndexView),
-        url(r'^addprojects/$',views.AddProject),
-        url(r'^projects_list/$',views.Project_list),
-        url(r'^issues/(?P<id>\d+)$', views.Issues_Detail),
-        url(r'^issues_list/$', views.Issues_list),
-        url(r'^solutions/$', views.Solution),
-        url(r'^profiles/$', views.Profiles),
+        url(r'^base/$', views.base, name="base"),
+        url(r'^index/$', views.IndexView, name="index"),
+        url(r'^addprojects/$',views.AddProject, name="addprojects"),
+        url(r'^projects_list/$',views.Project_list, name="projectslist"),
+        url(r'^issues/id=(?P<id>\d+)$', views.Issues_Detail, name="issues"),
+        url(r'^issues_list/$', views.Issues_list, name="issueslist"),
+        # url(r'^solutions/$', views.Solution),
+        url(r'^profiles/$', views.Profiles, name="profiles"),
+        url(r'^index/addindex/$', views.AddAnRe, name="addindex"),
 
         # url(r'^$', views.IndexView, name='index'),
 

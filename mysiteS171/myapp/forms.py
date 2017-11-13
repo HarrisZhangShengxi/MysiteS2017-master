@@ -1,23 +1,23 @@
 from django import forms
 
-from .models import Announcement, User, Project, Task, Issue, Answer
+from .models import Announcement, Requirement, User, Project, Task, Issue, Answer
 
 from django.contrib.auth.forms import UserCreationForm
 
 class AnnouncementForm(forms.Form):
-
-    title = forms.CharField(label='Title', max_length=10000)
-    author = forms.CharField(label='Author', max_length=50)
-    description = forms.CharField(label='Description', widget=forms.Textarea)
+    class Meta:
+        model = Announcement
+        fields = ['title', 'author', 'description']
 
 class RequirementForm(forms.Form):
-    title = forms.CharField(label='Title', max_length=10000)
-    costumer = forms.CharField(label='Costumer', max_length=50)
-    description = forms.CharField(label='Description', widget=forms.Textarea)
+    class Meta:
+        model = Requirement
+        fields = ['title', 'costumer', 'description']
 
 class IssuesForm(forms.Form):
-    object = forms.CharField(label='Object', widget=forms.Textarea)
-    description = forms.CharField(label='Description', widget=forms.Textarea)
+    class Meta:
+        model = Issue
+        fields = ['object', 'description']
 
 class ProjectForm(forms.ModelForm):
     class Meta:
@@ -25,12 +25,14 @@ class ProjectForm(forms.ModelForm):
         fields = ['project_no','name','leader','start_date','end_date','phase','description']
 
 class SolutionForm(forms.Form):
-    add_solution = forms.CharField(label='Add Solution', widget=forms.Textarea)
+    class Meta:
+        model = Answer
+        fields = ['answer']
 
-class InterestForm(forms.Form):
-    interested = forms.ChoiceField(widget=forms.RadioSelect(), choices=((1, 'Yes'), (0, 'No')))
-    age = forms.IntegerField(initial='20')
-    comments = forms.CharField(required=False, widget=forms.Textarea, label='Additional Comments')
+# class InterestForm(forms.Form):
+#     interested = forms.ChoiceField(widget=forms.RadioSelect(), choices=((1, 'Yes'), (0, 'No')))
+#     age = forms.IntegerField(initial='20')
+#     comments = forms.CharField(required=False, widget=forms.Textarea, label='Additional Comments')
 
 class UserForm(forms.Form):
     class Meta:
@@ -41,6 +43,3 @@ class RegisterForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = User
         fields=['username','first_name','last_name','email']
-
-
-

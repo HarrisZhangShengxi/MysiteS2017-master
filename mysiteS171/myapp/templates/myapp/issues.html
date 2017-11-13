@@ -23,15 +23,17 @@
 					<dt id="bigdt">{{ issue.desrciption }}<br /></dt>
 				</dl>
 				<div class="dividediv"></div>
-                {% for obj in solution %}
-				<dl id="bigdl">{{ obj.answer }}</dl>
+                {% if solution %}
+                    {% for obj in solution %}
+				    <dl id="bigdl">{{ obj.answer }}</dl>
 {#                <dl id="bigdl">{{ obj.replyer }}</dl>#}
 {#				<dl id="bigdl">{{ obj.answer }}</dl>#}
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
 				<dl id="bigdl">
                     <form action="issues.html" method="post">
                         {% csrf_token %}
-                        {{ form }}
+                        {{ form.as_p }}
                         <input type="submit" value="OK">
                     </form>
 {#					<dd> Add Solution:</dd>#}

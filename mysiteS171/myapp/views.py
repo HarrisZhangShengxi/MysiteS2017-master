@@ -1,7 +1,7 @@
 from django.shortcuts import render,render_to_response
 
 from .models import Announcement, Task, Project, Answer, Issue, Requirement, Employee
-from .forms import SolutionForm,ProjectForm, AnnouncementForm,RequirementForm,IssuesForm,InterestForm,RegisterForm
+from .forms import SolutionForm,ProjectForm, AnnouncementForm,RequirementForm,IssuesForm,RegisterForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView
@@ -38,7 +38,7 @@ def Project_list(request):
 
 def Issues_Detail(request, id):
     issue = Issue.objects.get(id=id)
-    answer = issue.answer_set.all()
+    answer = Answer.objects.filter(issue_id=id)
     return render(request, 'myapp/issues.html', {'issue':issue, 'solution':answer})
 
 
@@ -48,16 +48,16 @@ def Issues_list(request):
 
 
 def Solution(request):
-    if request.method == 'POST':
-        form = SolutionForm(request.POST)
-        if form.is_valid():
-            solution = form.save(commit=False)
-            solution.num_responses = 1
-            solution.save()
-            return HttpResponseRedirect(reverse('myapp:solutions'))
-    else:
-        form = SolutionForm()
-    return render(request, 'myapp/solutions.html', {'form':form})
+    # if request.method == 'POST':
+    form = SolutionForm(request.POST)
+    if form.is_valid():
+        solution = form.save(commit=False)
+            # solution.num_responses = 1
+        solution.save()
+    #         return HttpResponseRedirect(reverse('myapp:issues'))
+    # else:
+    #     form = SolutionForm()
+    return render(request, 'myapp/issues.html', {'form':form})
 
 
 def Profiles(request):
@@ -65,39 +65,38 @@ def Profiles(request):
     return render(request, 'myapp/profiles.html', {'profiles_info': profiles_info})
 
 def AddAnRe(request):
-    if request.method == 'POST':
-        Aform = AnnouncementForm(request.POST)
-        if Aform.is_valid():
-            announcement = Aform.save(commit=False)
-            announcement.num_responses = 1
-            announcement.save()
-            return HttpResponseRedirect(reverse('myapp:index'))
-        else:
-            Aform = AnnouncementForm()
+    # if request.method == 'POST':
+    Aform = AnnouncementForm(request.POST)
+    if Aform.is_valid():
+        announcement = Aform.save(commit=False)
+            # announcement.num_responses = 1
+        announcement.save()
 
-        Rform = RequirementForm(request.POST)
-        if Rform.is_valid():
-            requirement = Rform.save(commit=False)
-            requirement.num_responses = 1
-            requirement.save()
-            return HttpResponseRedirect(reverse('myapp:index'))
-        else:
-            Rform = RequirementForm()
-        return render(request, 'myapp/index.html', {'Aform':Aform, 'Rform':Rform})
+    Rform = RequirementForm(request.POST)
+    if Rform.is_valid():
+        requirement = Rform.save(commit=False)
+            # requirement.num_responses = 1
+        requirement.save()
+
+    # else:
+    #     Aform = AnnouncementForm()
+    #     Rform = RequirementForm()
+    return render(request, 'myapp/addindex.html', {'Aform':Aform, 'Rform':Rform})
 
 
 
 def AddIssues(request):
-    if request.method == 'POST':
-        form = IssuesForm(request.POST)
-        if form.is_valid():
-            issue = form.save(commit=False)
-            issue.num_responses = 1
-            issue.save()
-            return HttpResponseRedirect(reverse('myapp:issues_list'))
-        else:
-            form = IssuesForm()
-        return render(request, 'myapp/issues_list.html', {'form': form})
+    # if request.method == 'POST':
+    form = IssuesForm(request.POST)
+    if form.is_valid():
+        issue = form.save(commit=False)
+            # issue.num_responses = 1
+        issue.save()
+        return HttpResponseRedirect(reverse('myapp:issues_list'))
+    else:
+        form = IssuesForm()
+
+    return render(request, 'myapp/issues_list.html', {'form': form})
 
 
 

@@ -42,8 +42,10 @@
                     <tbody class="tbody1">
 					<tr class="solved">
                         {% for obj in issuelist %}
+                            <tr>
                             <td><a href="{% url 'myapp:issues' obj.id %}">{{ obj.object }}</a></td>
 						    <td>{{ obj.time }}</td>
+                            </tr>
                         {% endfor %}
 					</tr>
                     </tbody>
