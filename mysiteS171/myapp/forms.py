@@ -4,17 +4,17 @@ from .models import Announcement, Requirement, User, Project, Task, Issue, Answe
 
 from django.contrib.auth.forms import UserCreationForm
 
-class AnnouncementForm(forms.Form):
+class AnnouncementForm(forms.ModelForm):
     class Meta:
         model = Announcement
         fields = ['title', 'author', 'description']
 
-class RequirementForm(forms.Form):
+class RequirementForm(forms.ModelForm):
     class Meta:
         model = Requirement
-        fields = ['title', 'costumer', 'description']
+        fields = ['title', 'customer', 'description']
 
-class IssuesForm(forms.Form):
+class IssuesForm(forms.ModelForm):
     class Meta:
         model = Issue
         fields = ['object', 'description']
@@ -24,7 +24,7 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ['project_no','name','leader','start_date','end_date','phase','description']
 
-class SolutionForm(forms.Form):
+class SolutionForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['answer']
