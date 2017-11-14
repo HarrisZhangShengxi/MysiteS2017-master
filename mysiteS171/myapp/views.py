@@ -38,7 +38,7 @@ def Project_list(request):
 
 def Issues_Detail(request, id):
     issue = Issue.objects.get(id=id)
-    answer = Answer.objects.filter(issue_id=id)
+    answer = Answer.objects.filter(issue=id)
     return render(request, 'myapp/issues.html', {'issue':issue, 'solution':answer})
 
 

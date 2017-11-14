@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=100)),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('description', models.CharField(max_length=100000)),
                 ('date', models.DateTimeField()),
             ],
@@ -32,6 +33,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('answer', models.CharField(max_length=100000)),
+                ('issue', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='myapp.Issue')),
+                ('replyer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -95,20 +98,5 @@ class Migration(migrations.Migration):
                 ('description', models.CharField(max_length=100000)),
                 ('project_affiliation', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='myapp.Project')),
             ],
-        ),
-        migrations.AddField(
-            model_name='answer',
-            name='issue',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='myapp.Issue'),
-        ),
-        migrations.AddField(
-            model_name='answer',
-            name='replyer',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
-        ),
-        migrations.AddField(
-            model_name='announcement',
-            name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
         ),
     ]
