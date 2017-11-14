@@ -1,45 +1,49 @@
 from django import forms
 
-from .models import Announcement, Requirement, User, Project, Task, Issue, Answer
+from .models import Announcement, Requirement, Project, Issue, Member, Issue_Detail
+
 
 from django.contrib.auth.forms import UserCreationForm
 
 class AnnouncementForm(forms.ModelForm):
     class Meta:
         model = Announcement
-        fields = ['title', 'author', 'description']
+        fields = "__all__"
+
+  #  title = forms.CharField(label='Title', max_length=10000)
+   # author = forms.CharField(label='Author', max_length=50)
+   # description = forms.CharField(label='Description', widget=forms.Textarea)
 
 class RequirementForm(forms.ModelForm):
     class Meta:
         model = Requirement
-        fields = ['title', 'customer', 'description']
+        fields = "__all__"
+    #title = forms.CharField(label='Title', max_length=10000)
+    #costumer = forms.CharField(label='Costumer', max_length=50)
+    #description = forms.CharField(label='Description', widget=forms.Textarea)
 
 class IssuesForm(forms.ModelForm):
+    #object_name = forms.CharField(label='Object', widget=forms.Textarea)
+    #description = forms.CharField(label='Description', widget=forms.Textarea)
     class Meta:
         model = Issue
-        fields = ['object', 'description']
+        fields = "__all__"
 
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['project_no','name','leader','start_date','end_date','phase','description']
 
-class SolutionForm(forms.ModelForm):
+class IssueDetailForm(forms.ModelForm):
     class Meta:
-        model = Answer
-        fields = ['answer']
+        model = Issue_Detail
+        fields = "__all__"
 
-# class InterestForm(forms.Form):
-#     interested = forms.ChoiceField(widget=forms.RadioSelect(), choices=((1, 'Yes'), (0, 'No')))
-#     age = forms.IntegerField(initial='20')
-#     comments = forms.CharField(required=False, widget=forms.Textarea, label='Additional Comments')
 
-class UserForm(forms.Form):
+class MembersForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['first_name','last_name','position','phone']
+        model = Member
+        fields = ['project_no','first_name', 'last_name', 'email', 'phone']
 
-class RegisterForm(UserCreationForm):
-    class Meta(UserCreationForm):
-        model = User
-        fields=['username','first_name','last_name','email']
+
+

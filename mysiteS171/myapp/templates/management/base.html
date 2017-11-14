@@ -45,11 +45,11 @@
 						<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 						<a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
 					</div>
-					<div class="col-xs-5 col-md-6 text-right">
+				<!--	<div class="col-xs-5 col-md-6 text-right">
 						<span class="signin" data-toggle="modal" data-target="#myModal"><span class="hidden-xs">Sign In</span><i class="fa fa-sign-in visible-xs-block" aria-hidden="true"></i> </span>
 						<span class="register" data-toggle="modal" data-target="#myModal"><span
                         class="hidden-xs">Register</span><i class="fa fa-user-plus visible-xs-block" aria-hidden="true"></i></span>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>
@@ -64,140 +64,63 @@
                     <span class="icon-bar"></span>
 
                 </button>
-						<a class="navbar-brand" href="index.html">
+						<a class="navbar-brand" href="/myapp/index">
 							<img src="../../static/myapp/images/03.png" class="img-responsive" alt="company-logo" width="170px" height="120px">
 						</a>
 					</div>
 					<div class="collapse navbar-collapse navbar-right" id="myMegamenu">
 						<ul class="nav navbar-nav">
-							<li class="list2">
-								<a href="/myapp/index/" class="hvr-underline-from-center" id="back">HOME</a>
-							</li>
+
                             <li class="list2">
+								<a href="/myapp/index/" class="hvr-underline-from-center">HOME</a>
+							</li>
+
+                            {% if  request.user.username == 'mica' %}
+                            <li class="list2">
+								<a href="/myapp/addindex/" class="hvr-underline-from-center">ADD ACMT & RQMT</a>
+							</li>
+                            {% endif %}
+
+                            {% if  request.user.username == 'mica' %}
+                                <li class="list2">
                                 <a href="/myapp/addprojects/" class="hvr-underline-from-center">CREATE A PROJECT</a>
-							</li>
+							    </li>
+                            {% endif%}
 
                             <li class="list2">
-								<a href="/myapp/projects_list/" class="hvr-underline-from-center">PROJECT LIST</a>
+                                <a href="/myapp/projects_list/" class="hvr-underline-from-center">PROJECT LIST</a>
 							</li>
 
 							<li class="list2">
-								<a href="/myapp/issues/" class="hvr-underline-from-center">ISSUES</a>
+								<a href="/myapp/addissues/" class="hvr-underline-from-center">ISSUES</a>
 							</li>
 							<li class="list2">
 								<a href="/myapp/issues_list/" class="hvr-underline-from-center">ISSUES LIST</a>
 							</li>
-                            <li class="list2">
-								<a href="/myapp/solutions/" class="hvr-underline-from-center">SOLUTIONS</a>
-							</li>
+
+                            {% if  request.user.username == 'mica' %}
+                                <li>
+                                <a href="/myapp/addmembers/" class="hvr-underline-from-center">ADD MEMBERS</a>
+                                </li>
+                            {% endif %}
+
                             <li class="list2">
 								<a href="/myapp/profiles/" class="hvr-underline-from-center">MEMBERS INFO</a>
 							</li>
+
+                            {% if  request.user.is_authenticated %}
+                                <li class="hbar1"><a href="/myapp/logout/">LOGOUT</a></li>
+                            {% else %}
+                                <li class="hbar1"><a href="/myapp/login/">LOGIN</a></li>
+                            {% endif %}
 						</ul>
 					</div>
 
 				</nav>
 			</div>
 		</header>
-		<!--Login And Register Modal-->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<br>
-					<div class="bs-example bs-example-tabs">
-						<ul id="myTab" class="nav nav-tabs ">
-							<li id="signin_tab" class="active">
-								<a href="#signin" data-toggle="tab">Sign In</a>
-							</li>
-							<li id="reg_tab">
-								<a href="#signup" data-toggle="tab">Register</a>
-							</li>
-						</ul>
-					</div>
-					<div class="modal-body">
-						<div id="myTabContent" class="tab-content">
-							<div class=" signin tab-pane fade active in" id="signin">
-								<form class="form-horizontal">
-									<fieldset>
-										<div class="control-group section-top-10">
-											<label class="control-label" for="userid"><span
-                                            class="glyphicon glyphicon-user text-primary"></span> User Id :</label>
-											<div class="controls">
-												<input id="userid" name="userid" type="text" class="form-control input-medium" placeholder="user Id" required>
-											</div>
-										</div>
-										<div class="control-group section-top-10">
-											<label class="control-label" for="passwordinput"><span
-                                            class="glyphicon glyphicon-eye-open text-primary"></span> Password :</label>
-											<div class="controls">
-												<input type="password" id="passwordinput" name="passwordinput" class="form-control input-medium" placeholder="Password" required>
-											</div>
-										</div>
-										<div class="checkbox">
-											<label><input type="checkbox" class="blue">Remember me</label>
-										</div>
-										<div class="control-group">
-											<div class="controls section-top-10">
-												<button id="signin_btn" name="signin" class="btn btn-success form-control">Sign
-                                            In
-                                        </button>
-											</div>
-										</div>
-									</fieldset>
-								</form>
-							</div>
-							<div class="tab-pane fade signup" id="signup">
-								<form class="form-horizontal">
-									<fieldset>
-										<div class="control-group section-top-10">
-											<label for="user"><span class="glyphicon glyphicon-user text-primary"></span> Name
-                                        :</label>
-											<div class="controls">
-												<input id="user" name="userid" class="form-control input-large" type="text" placeholder="Name" required="">
-											</div>
-										</div>
-										<div class="control-group section-top-10">
-											<label class="control-label" for="Email_id"><span
-                                            class="glyphicon glyphicon-envelope text-primary"></span> Email :</label>
-											<div class="controls">
-												<input id="Email_id" name="Email" class="form-control input-large" type="email" placeholder="abcdef@xyz.com" required>
-											</div>
-										</div>
-										<div class="control-group section-top-10">
-											<label for="password"><span
-                                            class="glyphicon glyphicon-eye-open text-primary"></span>
-                                        Password :</label>
-											<div class="controls">
-												<input id="password" name="password" class="form-control input-large" type="password" placeholder="Password" required>
 
-											</div>
-										</div>
-										<div class="control-group section-top-10">
-											<label class="control-label" for="reenterpassword"><span
-                                            class="glyphicon glyphicon-repeat text-primary"></span> Re-Enter Password :</label>
-											<div class="controls">
-												<input id="reenterpassword" class="form-control input-large" name="reenterpassword" type="password" placeholder="Re Enter Password" required="">
-											</div>
-										</div>
-										<div class="control-group section-top-10">
-											<label class="control-label" for="confirmsignup"></label>
-											<div class="controls">
-												<button id="confirmsignup" name="confirmsignup" class="btn btn-success form-control">Sign Up
-                                        </button>
-											</div>
-										</div>
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--Login And Register Modal-->
+ 		<!--Login And Register Modal-->
 
 
 
@@ -250,7 +173,7 @@
 								</div>
 								<div class="footer_contact">
 									<div class="col-md-1  col-xs-1">
-										<a href="issues.html#object1"><i class="fa fa-caret-right div_hover1" aria-hidden="true"></i></a>
+										<a href="issues_list.html#object1"><i class="fa fa-caret-right div_hover1" aria-hidden="true"></i></a>
 									</div>
 									<div class="col-md-10  col-xs-10">
 										<a href="issues.html#object1" class="div_hover2">Issue1Issue1Issue1</a><br/><span class="footer_text_color">Jan. 25, 2017   </span></div>
@@ -284,7 +207,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-3 col-lg-3 col-sm-6 section-top-25">
+						<!--<div class="col-md-3 col-lg-3 col-sm-6 section-top-25">
 							<div class="row">
 								<div class="col-xs-12">
 									<h4 class="text-white">Solutions</h4>
@@ -296,7 +219,7 @@
 									<ul class="shots"></ul>
 								</div>
 							</div>
-						</div>
+						</div>    ----->
 						<!--<div class="col-md-3 col-sm-6 section-top-25">
 							<div class="row">
 								<div class="col-xs-12">
@@ -321,10 +244,10 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 section-top-15">
 						<p class="footer_text_color">
-							<a href="index.html">Home</a> &nbsp;
-							<a href="profiles.html">Profiles</a> &nbsp;
-							<a href="projects_list.html">Project Establishment</a> &nbsp;
-							<a href="addprojects.html">Task Creation</a>
+							<a href="index.html">HOME</a> &nbsp;
+							<a href="profiles.html">ADD MEMBERS</a> &nbsp;
+							<a href="projects_list.html">PROJECT LIST </a> &nbsp;
+							{#  <a href="addprojects.html">Create a Project</a>#}
 						</p>
 					</div>
 					<div class="col-xs-12 col-sm-6 text-right section-top-15">

@@ -1,7 +1,7 @@
 from django.shortcuts import render,render_to_response
 
-from .models import Announcement, Task, Project, Answer, Issue, Requirement, Employee
-from .forms import SolutionForm,ProjectForm, AnnouncementForm,RequirementForm,IssuesForm,RegisterForm
+from .models import Announcement, Requirement,  Project, Issue, Member, Issue_Detail
+from .forms import ProjectForm, AnnouncementForm,RequirementForm,IssuesForm,MembersForm,IssueDetailForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView
@@ -9,95 +9,126 @@ from django.views import View
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from datetime import datetime
+from django.contrib.auth.models import User
 
 # Create your views here.
 def base(request):
-    return render(request, 'myapp/base.html')
+    return render(request,'management/base.html')
 
 def IndexView(request):
-    acmt_list = Announcement.objects.all()
-    remt_list = Requirement.objects.all()
-    return render(request, 'myapp/index.html', {'acmtlist':acmt_list, 'remtlist':remt_list})
+    acmt_list = Announcement.objects.all().order_by('-date')
+    remt_list = Requirement.objects.all().order_by('-date')
+    return render(request,'management/index.html',{'acmtlist':acmt_list, 'remtlist':remt_list})
+
+def AddAnRe(request):
+    #if request.method == 'POST':
+        Aform = AnnouncementForm(request.POST)
+        if Aform.is_valid():
+            announcement = Aform.save(commit=False)
+            #announcement.num_responses = 1
+            announcement.save()
+          #  return HttpResponseRedirect(reverse('management:addindex'))
+        else:
+            Aform = AnnouncementForm()
+
+
+        Rform = RequirementForm(request.POST)
+        if Rform.is_valid():
+            requirement = Rform.save(commit=False)
+    #  requirement.num_responses = 1
+            requirement.save()
+# return HttpResponseRedirect(reverse('management:addindex'))
+        else:
+            Rform = RequirementForm()
+        return render(request, 'management/addindex.html', {'Aform':Aform, 'Rform':Rform})
 
 def AddProject(request):
-    #topiclist = Project.objects.all()
-    #if request.method == 'POST':
     form = ProjectForm(request.POST)
     if form.is_valid():
         project = form.save(commit=False)
-            #topic.num_responses = 1
-        project.save()
-            #return HttpResponseRedirect(reverse('myapp:'))
 
-    return render(request, 'myapp/addprojects.html', {'form':form})
+        project.save()
+            #return HttpResponseRedirect(reverse('management:'))
+    else:
+        form = ProjectForm()
+
+    return render(request, 'management/addprojects.html',{'form':form})
 
 def Project_list(request):
-    Project_list = Project.objects.all()[:10]
-    return render(request, 'myapp/projects_list.html', {'Project_list': Project_list})
-
-def Issues_Detail(request, id):
-    issue = Issue.objects.get(id=id)
-    answer = Answer.objects.filter(issue=id)
-    return render(request, 'myapp/issues.html', {'issue':issue, 'solution':answer})
-
-
-def Issues_list(request):
-    issue_list = Issue.objects.all()
-    return render(request, 'myapp/issues_list.html', {'issuelist':issue_list})
-
-
-def Solution(request):
-    # if request.method == 'POST':
-    form = SolutionForm(request.POST)
-    if form.is_valid():
-        solution = form.save(commit=False)
-            # solution.num_responses = 1
-        solution.save()
-    #         return HttpResponseRedirect(reverse('myapp:issues'))
-    # else:
-    #     form = SolutionForm()
-    return render(request, 'myapp/issues.html', {'form':form})
-
-
-def Profiles(request):
-    profiles_info = Profiles.objects.all()[:10]
-    return render(request, 'myapp/profiles.html', {'profiles_info': profiles_info})
-
-def AddAnRe(request):
-    # if request.method == 'POST':
-    Aform = AnnouncementForm(request.POST)
-    if Aform.is_valid():
-        announcement = Aform.save(commit=False)
-            # announcement.num_responses = 1
-        announcement.save()
-
-    Rform = RequirementForm(request.POST)
-    if Rform.is_valid():
-        requirement = Rform.save(commit=False)
-            # requirement.num_responses = 1
-        requirement.save()
-
-    # else:
-    #     Aform = AnnouncementForm()
-    #     Rform = RequirementForm()
-    return render(request, 'myapp/addindex.html', {'Aform':Aform, 'Rform':Rform})
-
-
+    member = Member.objects.filter(first_name=request.user.username)
+    Project_list = Project.objects.filter(members=member)
+    return render(request, 'management/projects_list.html', {'Project_list': Project_list})
 
 def AddIssues(request):
-    # if request.method == 'POST':
     form = IssuesForm(request.POST)
     if form.is_valid():
         issue = form.save(commit=False)
-            # issue.num_responses = 1
         issue.save()
-        return HttpResponseRedirect(reverse('myapp:issues_list'))
+        # return HttpResponseRedirect(reverse('management:'))
     else:
         form = IssuesForm()
+    return render(request, 'management/addissues.html', {'form': form})
+    #issue = Issue.objects.all()
+    #answer = Issue.objects.values_list("object", flat=True)
+    #form = IssuesForm(request.POST)
+    #if form.is_valid():
+    #    issue = form.save(commit=False)
+    #    issue.save()
 
-    return render(request, 'myapp/issues_list.html', {'form': form})
+    #return render(request, 'management/addissues.html', {'issue':issue,'answer':answer})
 
+
+def Issues_list(request):
+    if request.user.username == 'mica':
+        issue_list = Issue.objects.all()
+    else:
+        P_no = Member.objects.filter(first_name=request.user.username).values_list('project_no')
+        issue_list = Issue.objects.filter(project=P_no)
+
+    return render(request, 'management/issues_list.html', {'issue_list':issue_list})
+
+def Issues_Detail(request,issues_id):
+    issues = Issue.objects.get(id=issues_id)
+    project = Project.objects.get(project_no=issues.project_id)
+    author = User.objects.get(id=issues.author_id)
+
+    answer = Issue_Detail.objects.filter(issue_id=issues_id)
+    # replyer = User.objects.get()
+
+    form = IssueDetailForm(request.POST)
+    if form.is_valid():
+        issuedetail = form.save(commit=False)
+        issuedetail.save()
+    else:
+        form = IssueDetailForm()
+    return render(request, 'management/issues_detail.html',{'issues':issues, 'answer':answer, 'project':project, 'author':author, 'form':form})
+
+def Profiles(request):
+    if request.user.username == 'mica':
+        Profiles = Member.objects.all()[:10]
+    else:
+        P_no = Member.objects.filter(first_name=request.user.username).values_list('project_no')
+        Profiles = Member.objects.filter(project_no=P_no)
+    #Profiles = Member.objects.all()[:10]
+    #form = MembersForm(request.POST)
+    #if form.is_valid():
+    #    members = form.save(commit=False)
+            #topic.num_responses = 1
+    #    members.save()
+            #return HttpResponseRedirect(reverse('management:'))
+
+    return render(request, 'management/profiles.html',{'Profiles': Profiles})
+
+def AddMember(request):
+    form = MembersForm(request.POST)
+    if form.is_valid():
+        member = form.save(commit=False)
+        member.save()
+        user = User.objects.create_user(username=member.first_name,password="haohaoxuexi")
+        user.save()
+    else:
+        form = MembersForm()
+    return render(request, 'management/addmembers.html', {'form':form})
 
 
 #def topicdetail(request, topic_id):
@@ -119,17 +150,17 @@ def AddIssues(request):
 #        form = InterestForm()
 #    return render(request, 'myapp/topicdetail.html', {'form': form, 'topic': topic})
 
-def register(request):
-    employeelist = Employee.objects.all()
-    if request.method == 'POST':
-        form = RegisterForm(request.POST,request.FILES)
-        if form.is_valid():
-            employee = form.save(commit=False)
-            employee.save()
-            return HttpResponseRedirect(reverse('myapp:index'))
-    else:
-        form = RegisterForm()
-    return render(request, 'myapp/register.html',{'form':form, 'employeelist':employeelist})
+#def register(request):
+#    employeelist = Employee.objects.all()
+#    if request.method == 'POST':
+#        form = RegisterForm(request.POST,request.FILES)
+#        if form.is_valid():
+#            employee = form.save(commit=False)
+#            employee.save()
+#            return HttpResponseRedirect(reverse('myapp:index'))
+#    else:
+#        form = RegisterForm()
+#    return render(request, 'myapp/register.html',{'form':form, 'employeelist':employeelist})
 
 
 def user_login(request):
@@ -146,7 +177,7 @@ def user_login(request):
         else:
             return HttpResponse('Invalid login details.')
     else:
-        return render(request, 'myapp/login.html')
+        return render(request, 'management/login.html')
 
 @login_required
 def user_logout(request):

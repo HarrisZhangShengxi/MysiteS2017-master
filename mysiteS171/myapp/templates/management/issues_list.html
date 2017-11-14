@@ -1,4 +1,4 @@
-﻿{% extends 'myapp/base.html' %}
+﻿{% extends 'management/base.html' %}
 
 {% block body_block %}
 
@@ -16,7 +16,7 @@
 		<div class="container2">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container">
-						<div>
+						<!---<div>
 							<ul class="nav navbar-nav filter" data-filter="true">
 								<li class="active" id="all">
 									<a href="#" data-filter="*">All</a>
@@ -27,31 +27,33 @@
 								<li id="unsolved">
 									<a href="#" data-filter=".unsolved">Unsolved</a>
 								</li>
-							</ul>
-						</div>
+							</ul>-
+						</div>--->
 					
 				</div>
 			</nav>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Object Name</th>
+                        <th>Issues Number</th>
+                        <th>Project Name</th>
+						<th>Issues Name</th>
 						<th>Time</th>
 					</tr>
 				</thead>
                     <tbody class="tbody1">
-					<tr class="solved">
-                        {% for obj in issuelist %}
-                            <tr>
-                            <td><a href="{% url 'myapp:issues' obj.id %}">{{ obj.object }}</a></td>
-						    <td>{{ obj.time }}</td>
-                            </tr>
+					<tr class="">
+                        {% for obj in issue_list %}
+                            <td><a href="{% url 'myapp:issues_detail' obj.id %}" >{{ obj.id }}</a></td>
+                            <td><a href="{% url 'myapp:issues_detail' obj.id %}" >{{ obj.project }}</a></td>
+                            <td><a href="{% url 'myapp:issues_detail' obj.id %}" >{{ obj.title }}</a></td>
+						    <td>{{ obj.date }}</td>
                         {% endfor %}
 					</tr>
                     </tbody>
 			</table>
 		</div>
-		<section class="contact_page">
+		<!--<section class="contact_page">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6 col-sm-offset-3 m-t-50">
@@ -61,13 +63,14 @@
 
 			</div>
 		</section>
-		<div class="container">
+    <!--  <div class="container">
 			<div class="container1">
-                <form action="" method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
+                <form action="issues.html" method="post">
+
                         <input type="submit" value="Submit">
                 </form>
+                <a href="---->
+
 {#				<dl>#}
 {#					<dd>Object:</dd>#}
 {#					<textarea rows="1" cols="50"> </textarea>#}
@@ -78,11 +81,10 @@
 {#					<textarea rows="8" cols="50"> </textarea>#}
 {#				</dl>#}
 {#				<button type="submit" form="#" value="Submit">Add Issues</button>#}
-			</div>
-		</div>
+
 			
-			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
+		<!----	<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
 		
-		<!-----------Body Section End-------------->
+		-------Body Section End-------------->
 
 	{% endblock %}

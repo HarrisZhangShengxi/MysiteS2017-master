@@ -1,4 +1,4 @@
-﻿{% extends 'myapp/base.html' %}
+﻿{% extends 'management/base.html' %}
 
 {% block body_block %}
 
@@ -8,16 +8,32 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6 col-sm-offset-3 m-t-50">
-						<h1 class="underline heading">Profiles</h1>
+						<h1 class="underline heading">ALL MEMBERS INFORMATION </h1>
 					</div>
 				</div>
 
 			</div>
 		</section>
-		<div class="container">
+        <div class="container">
+                <div class="container1">
+                     <ul>
+                    {% for members in Profiles %}
+                        <div class="container2" >
+                        <li>First Name:  {{ members.first_name}}  </li>
+                        <li>Last Name:  {{ members.last_name }}</li>
+                        <li>Email:  {{ members.email }}</li>
+                        <li>Phone:  {{ members.phone }}</li>
+                        </div>
+                    {% endfor %}
+                     </ul>
+                </div>
+                <a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
+            </div>
+	<!---	<div class="container">
 			<div class="container1">
 				<div class="leftpcontent">
 					<ul>
+                        <p>Want to join us?</p>
                         <form class="profile_form" action="" method="post" name="profile_form">
                             <li>
                                 <lable for="First Name">First Name:</lable>
@@ -56,7 +72,7 @@
 
 			</div>
 			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-		</div>
+		</div>----->
 
 		<!----------------Body Section End---------------------->
 	{% endblock %}

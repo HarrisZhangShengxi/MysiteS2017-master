@@ -9,7 +9,7 @@ class Announcement(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(User)
     description = models.CharField(max_length=100000)
-    date = models.DateTimeField()
+    date = models.DateField()
     def __str__(self):
         return self.title
 
@@ -17,12 +17,24 @@ class Requirement(models.Model):
     title = models.CharField(max_length=100)
     customer = models.CharField(max_length=100)
     description = models.CharField(max_length=100000)
-    date = models.DateTimeField()
+    date = models.DateField()
     def __str__(self):
         return self.title
 
+class Member(models.Model):
+    #members_no = models.IntegerField(max_length=5,primary_key=True)
+    project_no = models.IntegerField()
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    email = models.CharField(max_length=50,null=True,blank=True)
+    phone = models.IntegerField(null=True,blank=True)
+    def __str__(self):
+        return self.first_name + self.last_name
+
 class Project(models.Model):
     project_no = models.IntegerField(primary_key=True)
+    members = models.ManyToManyField(Member,blank=True)
+    #issues = models.ForeignKey(Issue)
     name = models.CharField(max_length=50)
     leader = models.CharField(max_length=50)
     start_date = models.DateField()
@@ -42,51 +54,24 @@ class Project(models.Model):
     )
     phase = models.IntegerField(default=0, choices=phase_choice)
     description = models.CharField(max_length=100000)
+
     def __str__(self):
-        return str(self.project_no)+' '+ self.name
+        return str(self.project_no)+'  '+ self.name
 
-class Employee(User):
-    #firstname = models.CharField(max_length=50, null=True, blank=True)
-    #lastname = models.CharField(max_length=50, null=True, blank=True)
-    position = models.CharField(max_length=50, null=True, blank=True)
-    phone = models.IntegerField()
-    def __str__(self):
-        return self.first_name, self.last_name
-
-
-
-class Task(models.Model):
-    project_affiliation = models.ForeignKey(Project, null=True, blank=True)
-    name = models.CharField(max_length=50)
-    start_date = models.DateField()
-    due_date = models.DateField()
-    actual_end_date = models.DateField()
-    REQUIRED = 0
-    SIGNIFICANT = 1
-    MODERATE = 2
-    MINOR = 3
-    LOW = 4
-    Priority_choice = (
-        (0, 'Required'),
-        (1, 'Significant'),
-        (2, 'Moderate'),
-        (3, 'Minor'),
-        (4, 'Low')
-    )
-    priority = models.IntegerField(default=0, choices=Priority_choice)
-    description = models.CharField(max_length=100000)
-    def __str__(self):
-        return self.name
 
 class Issue(models.Model):
-    object = models.CharField(max_length=1000)
-    announcer = models.ForeignKey(User)
-    description = models.CharField(max_length=100000)
-    time =  models.DateTimeField()
-    def __str__(self):
-        return self.object
 
-class Answer(models.Model):
+    project = models.ForeignKey(Project)
+    title = models.CharField(max_length=1000)
+    description = models.CharField(max_length=100000)
+    author = models.ForeignKey(User)
+    date =  models.DateField()
+
+    def __str__(self):
+        return self.title
+
+
+class Issue_Detail(models.Model):
     answer = models.CharField(max_length=100000)
     replyer = models.ForeignKey(User)
     issue = models.ForeignKey(Issue)

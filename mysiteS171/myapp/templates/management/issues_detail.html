@@ -1,0 +1,56 @@
+{% extends 'management/base.html' %}
+
+{% block body_block %}
+
+		<!----------------Body Section Start---------------------->
+		<section class="contact_page">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3 m-t-50">
+						<h1 class="underline heading">ISSUE DETAIL</h1>
+					</div>
+				</div>
+			</div>
+		</section>
+        <div class="container">
+			<div class="container1">
+				 <ul>
+                    <div class="container2" color = 'red'>
+                    <li>Project ID:  {{ issues.project_id }}  </li>
+                    <li>Project Name:  {{ project.name }}  </li>
+                    <li>Issue Title:  {{ issues.title }}</li>
+                    <li>Description:  {{ issues.description }}</li>
+                    <li>Author:  {{ author.username }}</li>
+                    <li>Date:  {{ issues.date }}</li>
+                    </div>
+                 </ul>
+            </div>
+			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
+		</div>
+        <div class="container">
+			<div class="container1">
+				 <ul>
+                     {% for an in answer %}
+                        <div class="container2" color = 'red'>
+                        <li>Answer Description:  {{ an.answer }}  </li>
+{#                        <li>Replyer Name:  {{ an.replyer_username }}</li>#}
+                        </div>
+                     {% endfor %}
+                 </ul>
+            </div>
+			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
+		</div>
+        <div class="container">
+			<div class="container1">
+                <div class="container2">
+				<form action="" method="post">
+                    {%  csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="submit"/>
+                </form>
+                </div>
+			</div>
+			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
+		</div>
+          <!----------------Body Section End---------------------->
+{% endblock %}
