@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 class AnnouncementForm(forms.ModelForm):
     class Meta:
         model = Announcement
-        fields = "__all__"
+        fields = ['title', 'author', 'description']
 
   #  title = forms.CharField(label='Title', max_length=10000)
    # author = forms.CharField(label='Author', max_length=50)
@@ -17,7 +17,7 @@ class AnnouncementForm(forms.ModelForm):
 class RequirementForm(forms.ModelForm):
     class Meta:
         model = Requirement
-        fields = "__all__"
+        fields = ['title', 'customer', 'description']
     #title = forms.CharField(label='Title', max_length=10000)
     #costumer = forms.CharField(label='Costumer', max_length=50)
     #description = forms.CharField(label='Description', widget=forms.Textarea)
@@ -27,7 +27,7 @@ class IssuesForm(forms.ModelForm):
     #description = forms.CharField(label='Description', widget=forms.Textarea)
     class Meta:
         model = Issue
-        fields = "__all__"
+        fields = ['project', 'title', 'description', 'author']
 
 class ProjectForm(forms.ModelForm):
     class Meta:

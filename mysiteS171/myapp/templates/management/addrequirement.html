@@ -1,0 +1,30 @@
+{% extends 'management/base.html' %}
+
+{% block body_block %}
+
+		<!----------------Body Section Start---------------------->
+		<section class="contact_page">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3 m-t-50">
+						<h1 class="underline heading">REQUIREMENT POSTING</h1>
+					</div>
+				</div>
+
+			</div>
+		</section>
+        <div class="container">
+			    <div class="container1">
+                    <div class="container2">
+                        <h1 align="center">REQUIREMENT</h1><br>
+                            <form action="" method="POST">
+                            {%  csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit" value="submit"/>
+                            </form>
+                    </div>
+			    </div>
+			    <a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
+        </div>
+          <!----------------Body Section End---------------------->
+{% endblock %}

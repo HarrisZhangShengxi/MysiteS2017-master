@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.shortcuts import render,render_to_response
 
 from .models import Announcement, Requirement,  Project, Issue, Member, Issue_Detail
@@ -18,41 +20,42 @@ def base(request):
 def IndexView(request):
     acmt_list = Announcement.objects.all().order_by('-date')
     remt_list = Requirement.objects.all().order_by('-date')
-    return render(request,'management/index.html',{'acmtlist':acmt_list, 'remtlist':remt_list})
+    return render(request,'management/index.html',{'acmtlist': acmt_list, 'remtlist': remt_list})
 
-def AddAnRe(request):
-    #if request.method == 'POST':
-        Aform = AnnouncementForm(request.POST)
-        if Aform.is_valid():
-            announcement = Aform.save(commit=False)
-            #announcement.num_responses = 1
+def AddAn(request):
+    if request.method == 'POST':
+        form = AnnouncementForm(request.POST)
+        if form.is_valid():
+            announcement = form.save(commit=False)
+            announcement.date = date.today()
             announcement.save()
-          #  return HttpResponseRedirect(reverse('management:addindex'))
-        else:
-            Aform = AnnouncementForm()
+    else:
+        form = AnnouncementForm()
 
+    return render(request, 'management/addannouncement.html', {'form': form})
 
-        Rform = RequirementForm(request.POST)
-        if Rform.is_valid():
-            requirement = Rform.save(commit=False)
-    #  requirement.num_responses = 1
+def AddRe(request):
+    if request.method == 'POST':
+        form = RequirementForm(request.POST)
+        if form.is_valid():
+            requirement = form.save(commit=False)
+            requirement.date = date.today()
             requirement.save()
-# return HttpResponseRedirect(reverse('management:addindex'))
-        else:
-            Rform = RequirementForm()
-        return render(request, 'management/addindex.html', {'Aform':Aform, 'Rform':Rform})
+    else:
+        form = RequirementForm()
+
+    return render(request, 'management/addrequirement.html', {'form': form})
+
 
 def AddProject(request):
     form = ProjectForm(request.POST)
     if form.is_valid():
         project = form.save(commit=False)
-
         project.save()
-            #return HttpResponseRedirect(reverse('management:'))
     else:
         form = ProjectForm()
 
-    return render(request, 'management/addprojects.html',{'form':form})
+    return render(request, 'management/addprojects.html', {'form': form})
 
 def Project_list(request):
     member = Member.objects.filter(first_name=request.user.username)
@@ -63,6 +66,7 @@ def AddIssues(request):
     form = IssuesForm(request.POST)
     if form.is_valid():
         issue = form.save(commit=False)
+        issue.date = date.today()
         issue.save()
         # return HttpResponseRedirect(reverse('management:'))
     else:
@@ -93,7 +97,6 @@ def Issues_Detail(request,issues_id):
     author = User.objects.get(id=issues.author_id)
 
     answer = Issue_Detail.objects.filter(issue_id=issues_id)
-    # replyer = User.objects.get()
 
     form = IssueDetailForm(request.POST)
     if form.is_valid():

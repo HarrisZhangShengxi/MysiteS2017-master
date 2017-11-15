@@ -77,7 +77,13 @@
 
                             {% if  request.user.username == 'mica' %}
                             <li class="list2">
-								<a href="/myapp/addindex/" class="hvr-underline-from-center">ADD ACMT & RQMT</a>
+								<a href="/myapp/addannouncement/" class="hvr-underline-from-center">ADD ANNOUNCEMENT</a>
+							</li>
+                            {% endif %}
+
+                            {% if  request.user.username == 'mica' %}
+                            <li class="list2">
+								<a href="/myapp/addrequirement/" class="hvr-underline-from-center">ADD REQUIREMENT</a>
 							</li>
                             {% endif %}
 
