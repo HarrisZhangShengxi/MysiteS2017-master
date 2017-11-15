@@ -22,30 +22,24 @@ def IndexView(request):
     remt_list = Requirement.objects.all().order_by('-date')
     return render(request,'management/index.html',{'acmtlist': acmt_list, 'remtlist': remt_list})
 
-def AddAn(request):
-    if request.method == 'POST':
-        form = AnnouncementForm(request.POST)
-        if form.is_valid():
-            announcement = form.save(commit=False)
-            announcement.date = date.today()
-            announcement.save()
+def AddAnRe(request):
+    Aform = AnnouncementForm(request.POST)
+    if Aform.is_valid():
+        announcement = Aform.save(commit=False)
+        announcement.date = date.today()
+        announcement.save()
     else:
-        form = AnnouncementForm()
+        Aform = AnnouncementForm()
 
-    return render(request, 'management/addannouncement.html', {'form': form})
-
-def AddRe(request):
-    if request.method == 'POST':
-        form = RequirementForm(request.POST)
-        if form.is_valid():
-            requirement = form.save(commit=False)
-            requirement.date = date.today()
-            requirement.save()
+    Rform = RequirementForm(request.POST)
+    if Rform.is_valid():
+        requirement = Rform.save(commit=False)
+        requirement.date = date.today()
+        requirement.save()
     else:
-        form = RequirementForm()
+        Rform = RequirementForm()
 
-    return render(request, 'management/addrequirement.html', {'form': form})
-
+    return render(request, 'management/addindex.html', {'Aform': Aform, 'Rform': Rform})
 
 def AddProject(request):
     form = ProjectForm(request.POST)

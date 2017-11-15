@@ -4,8 +4,7 @@ from . import views
 urlpatterns = [
       #  url(r'^base/$', views.base),
         url(r'^index/$', views.IndexView,name='index'),
-        url(r'^addannouncement/$', views.AddAn, name='addan'),
-        url(r'^addrequirement/$', views.AddRe, name='addre'),
+        url(r'^addindex/$', views.AddAnRe, name='addan'),
         url(r'^addprojects/$',views.AddProject, name='addproject'),
         url(r'^projects_list/$',views.Project_list),
         url(r'^addissues/$', views.AddIssues, name='addissues'),
