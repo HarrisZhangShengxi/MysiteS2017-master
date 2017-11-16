@@ -17,7 +17,7 @@ urlpatterns = [
         # url(r'^$', views.IndexView, name='index'),
 
         # url(r'^index/$', views.index, name='index'),
-        url(r'^issues_detail/(?P<issues_id>\d+)/$', views.Issues_Detail,name='issues_detail'),
+        url(r'^(?P<issues_id>\d+)/$', views.Issues_Detail,name='issues_detail'),
         #url(r'^issues_detail/(?P<issues_id>\d+)/$', views.Issues_Detail,name='issues_detail'),
         # url(r'^topics/$', views.topics, name='topics'),
 

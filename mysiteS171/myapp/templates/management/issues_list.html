@@ -41,16 +41,16 @@
 						<th>Time</th>
 					</tr>
 				</thead>
+                {% for obj in issue_list %}
                     <tbody class="tbody1">
 					<tr class="">
-                        {% for obj in issue_list %}
                             <td><a href="{% url 'myapp:issues_detail' obj.id %}" >{{ obj.id }}</a></td>
                             <td><a href="{% url 'myapp:issues_detail' obj.id %}" >{{ obj.project }}</a></td>
                             <td><a href="{% url 'myapp:issues_detail' obj.id %}" >{{ obj.title }}</a></td>
 						    <td>{{ obj.date }}</td>
-                        {% endfor %}
 					</tr>
                     </tbody>
+                {% endfor %}
 			</table>
 		</div>
 		<!--<section class="contact_page">
