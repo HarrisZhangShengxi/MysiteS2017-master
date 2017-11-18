@@ -43,7 +43,7 @@ class IssueDetailForm(forms.ModelForm):
 class MembersForm(forms.ModelForm):
     class Meta:
         model = Member
-        fields = ['project_no']
+        fields = ['project_no', 'first_name', 'last_name', 'email']
 
 
 class MemberRegisterForm(UserCreationForm):

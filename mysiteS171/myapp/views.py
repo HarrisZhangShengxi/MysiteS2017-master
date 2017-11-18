@@ -154,9 +154,19 @@ def AddMember(request):
     if request.method == 'POST':
         if form.is_valid():
             member = form.save(commit=False)
-            member.save()
-            messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
-            form = MembersForm()
+            try:
+                Project.objects.get(project_no=member.project_no)
+                try:
+                    User.objects.get(first_name=member.first_name, last_name=member.last_name, email=member.email)
+                    member.save()
+                    messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
+                    form = MembersForm()
+                except:
+                    messages.add_message(request, messages.ERROR, 'Error! Name and email are not matched!')
+                    form = MembersForm()
+            except:
+                messages.add_message(request, messages.ERROR, 'Error! It seems project is not exist!')
+                form = MembersForm()
         else:
             messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
             form = MembersForm()
