@@ -17,6 +17,14 @@
 			    <div class="container1">
                     <div class="container2">
                         <h1 align="center">ANNOUNCEMENT</h1><br>
+                            {% if messages%}
+                                <ul class = "messages">
+                                {% for message in messages %}
+                                    <li{% if message.tags %} class = "{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                {% endfor%}
+                                </ul>
+                            {% endif %}
+
                             <form action="" method="POST">
                             {%  csrf_token %}
                             {{ Aform.as_p }}
@@ -30,6 +38,14 @@
 			    <div class="container1">
                     <div class="container2">
                         <h1 align="center">REQUIREMENT</h1><br>
+                            {% if messages%}
+                                <ul class = "messages">
+                                {% for message in messages %}
+                                    <li{% if message.tags %} class = "{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                {% endfor%}
+                                </ul>
+                            {% endif %}
+
                             <form action="" method="POST">
                             {%  csrf_token %}
                             {{ Rform.as_p }}

@@ -34,7 +34,6 @@ class Member(models.Model):
 class Project(models.Model):
     project_no = models.IntegerField(primary_key=True)
     members = models.ManyToManyField(Member,blank=True)
-    #issues = models.ForeignKey(Issue)
     name = models.CharField(max_length=50)
     leader = models.CharField(max_length=50)
     start_date = models.DateField()

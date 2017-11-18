@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Announcement, Requirement, Project, Issue, Member, Issue_Detail
+from .models import Announcement, Requirement, Project, Issue, Member, Issue_Detail, User
 
 
 from django.contrib.auth.forms import UserCreationForm
@@ -37,13 +37,16 @@ class ProjectForm(forms.ModelForm):
 class IssueDetailForm(forms.ModelForm):
     class Meta:
         model = Issue_Detail
-        fields = "__all__"
+        fields = ['answer']
 
 
 class MembersForm(forms.ModelForm):
     class Meta:
         model = Member
-        fields = ['project_no','first_name', 'last_name', 'email', 'phone']
+        fields = ['project_no']
 
 
-
+class MemberRegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']

@@ -13,9 +13,7 @@ urlpatterns = [
         url(r'^login/$', views.user_login, name='login'),
         url(r'^logout/$', views.user_logout, name='logout'),
         url(r'^addmembers/$',views.AddMember, name='addmember'),
-
-        # url(r'^$', views.IndexView, name='index'),
-
+        url(r'^register/$', views.user_register, name='register'),
         # url(r'^index/$', views.index, name='index'),
         url(r'^(?P<issues_id>\d+)/$', views.Issues_Detail,name='issues_detail'),
         #url(r'^issues_detail/(?P<issues_id>\d+)/$', views.Issues_Detail,name='issues_detail'),

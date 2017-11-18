@@ -1,9 +1,9 @@
 from datetime import date
-
+from django.contrib import messages
 from django.shortcuts import render,render_to_response
 
 from .models import Announcement, Requirement,  Project, Issue, Member, Issue_Detail
-from .forms import ProjectForm, AnnouncementForm,RequirementForm,IssuesForm,MembersForm,IssueDetailForm
+from .forms import ProjectForm, AnnouncementForm,RequirementForm,IssuesForm,MembersForm,IssueDetailForm,MemberRegisterForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView
@@ -24,18 +24,30 @@ def IndexView(request):
 
 def AddAnRe(request):
     Aform = AnnouncementForm(request.POST)
-    if Aform.is_valid():
-        announcement = Aform.save(commit=False)
-        announcement.date = date.today()
-        announcement.save()
+    if request.method == 'POST':
+        if Aform.is_valid():
+            announcement = Aform.save(commit=False)
+            announcement.date = date.today()
+            announcement.save()
+            messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
+            Aform = AnnouncementForm()
+        else:
+            messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
+            Aform = AnnouncementForm()
     else:
         Aform = AnnouncementForm()
 
     Rform = RequirementForm(request.POST)
-    if Rform.is_valid():
-        requirement = Rform.save(commit=False)
-        requirement.date = date.today()
-        requirement.save()
+    if request.method == 'POST':
+        if Rform.is_valid():
+            requirement = Rform.save(commit=False)
+            requirement.date = date.today()
+            requirement.save()
+            messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
+            Rform = RequirementForm()
+        else:
+            messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
+            Rform = RequirementForm()
     else:
         Rform = RequirementForm()
 
@@ -43,26 +55,40 @@ def AddAnRe(request):
 
 def AddProject(request):
     form = ProjectForm(request.POST)
-    if form.is_valid():
-        project = form.save(commit=False)
-        project.save()
+    if request.method == 'POST':
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.save()
+            messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
+            form = ProjectForm()
+        else:
+            messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
+            form = ProjectForm()
     else:
         form = ProjectForm()
 
     return render(request, 'management/addprojects.html', {'form': form})
 
 def Project_list(request):
-    member = Member.objects.filter(first_name=request.user.username)
-    Project_list = Project.objects.filter(members=member)
+    if request.user.username == 'mica':
+        Project_list = Project.objects.all()
+    else:
+        member = Member.objects.filter(first_name=request.user.username)
+        Project_list = Project.objects.filter(members=member)
     return render(request, 'management/projects_list.html', {'Project_list': Project_list})
 
 def AddIssues(request):
     form = IssuesForm(request.POST)
-    if form.is_valid():
-        issue = form.save(commit=False)
-        issue.date = date.today()
-        issue.save()
-        # return HttpResponseRedirect(reverse('management:'))
+    if request.method == 'POST':
+        if form.is_valid():
+            issue = form.save(commit=False)
+            issue.date = date.today()
+            issue.save()
+            messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
+            form = IssuesForm()
+        else:
+            messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
+            form = IssuesForm()
     else:
         form = IssuesForm()
     return render(request, 'management/addissues.html', {'form': form})
@@ -93,11 +119,18 @@ def Issues_Detail(request,issues_id):
     answer = Issue_Detail.objects.filter(issue_id=issues_id)
 
     form = IssueDetailForm(request.POST)
-    if form.is_valid():
-        issuedetail = form.save(commit=False)
-        issuedetail.save()
+    if request.method == 'POST':
+        if form.is_valid():
+            issuedetail = form.save(commit=False)
+            issuedetail.issue_id = issues_id
+            issuedetail.replyer_id = request.user.id
+            issuedetail.save()
+            form = IssueDetailForm()
+        else:
+            form = IssueDetailForm()
     else:
         form = IssueDetailForm()
+
     return render(request, 'management/issues_detail.html',{'issues':issues, 'answer':answer, 'project':project, 'author':author, 'form':form})
 
 def Profiles(request):
@@ -118,11 +151,15 @@ def Profiles(request):
 
 def AddMember(request):
     form = MembersForm(request.POST)
-    if form.is_valid():
-        member = form.save(commit=False)
-        member.save()
-        user = User.objects.create_user(username=member.first_name,password="haohaoxuexi")
-        user.save()
+    if request.method == 'POST':
+        if form.is_valid():
+            member = form.save(commit=False)
+            member.save()
+            messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
+            form = MembersForm()
+        else:
+            messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
+            form = MembersForm()
     else:
         form = MembersForm()
     return render(request, 'management/addmembers.html', {'form':form})
@@ -169,17 +206,28 @@ def user_login(request):
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect(reverse('myapp:index'))
-            else:
-                return HttpResponse('Your account is disabled.')
         else:
-            return HttpResponse('Invalid login details.')
+            messages.add_message(request, messages.ERROR, 'Username and password are not matched. Please input again!')
+            return render(request, 'management/login.html')
     else:
         return render(request, 'management/login.html')
 
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse(('myapp:index')))
+    return HttpResponseRedirect(reverse(('myapp:login')))
+
+def user_register(request):
+    if request.method == 'POST':
+        form = MemberRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            return  HttpResponseRedirect(reverse('myapp:login'))
+    else:
+        form = MemberRegisterForm()
+    return  render(request, 'management/register.html', {'form':form})
+
 
 #def mycourses(request):
  #   courses = Course.objects.filter(students__username=request.user.username)

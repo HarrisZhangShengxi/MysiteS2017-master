@@ -2,22 +2,22 @@
 {% load staticfiles %}
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-		<link rel="icon" type="image/png" sizes="32x32" href="../../static/myapp/images/favicon-32x32.png">
-		<!-----------------Global css------------------>
-		<link rel="stylesheet" href="../../static/myapp/css/bootstrap.css">
-		<link rel="stylesheet" href="../../static/myapp/css/font-awesome.min.css">
-		<!-------------------custom css-------------------->
-		<link rel="stylesheet" href="../../static/myapp/css/custom.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../static/myapp/images/favicon-32x32.png">
+    <!-----------------Global css------------------>
+    <link rel="stylesheet" href="../../static/myapp/css/bootstrap.css">
+    <link rel="stylesheet" href="../../static/myapp/css/font-awesome.min.css">
+    <!-------------------custom css-------------------->
+    <link rel="stylesheet" href="../../static/myapp/css/custom.css">
 
-	</head>
+</head>
 
-	<body>
-		<!--------------------Preloader-------------->
-		<div class="preloader" style="position:fixed;
+<body>
+<!--------------------Preloader-------------->
+<div class="preloader" style="position:fixed;
     width:100%;
     height:100%;
     top:0;
@@ -25,131 +25,137 @@
     z-index:100000;
     backface-visibility: hidden;
     background: #ffffff;">
-			<div style=" width: 50px;
+    <div style=" width: 50px;
     height: 50px;
     position: absolute;
     left: 50%;
     top: 50%;
     background-position: center;
     margin:-25px 0 0 -25px;">
-				<img src="../../static/myapp/images/loader.gif" alt="loading...">
-			</div>
-		</div>
-		<!------------------Preloader end------------------->
-		<div class="tp-header">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-7 col-md-6">
-						<a href="#"> <i class="fa fa-facebook" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-						<a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
-					</div>
-				<!--	<div class="col-xs-5 col-md-6 text-right">
-						<span class="signin" data-toggle="modal" data-target="#myModal"><span class="hidden-xs">Sign In</span><i class="fa fa-sign-in visible-xs-block" aria-hidden="true"></i> </span>
-						<span class="register" data-toggle="modal" data-target="#myModal"><span
-                        class="hidden-xs">Register</span><i class="fa fa-user-plus visible-xs-block" aria-hidden="true"></i></span>
-					</div>-->
-				</div>
-			</div>
-		</div>
-		<header>
-			<div class="container">
-				<nav class="navbar navbar-default">
-					<div class="navbar-header">
-						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#myMegamenu"><span
+        <img src="../../static/myapp/images/loader.gif" alt="loading...">
+    </div>
+</div>
+<!------------------Preloader end------------------->
+<div class="tp-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-7 col-md-6">
+                <a href="#"> <i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+            </div>
+            <!--	<div class="col-xs-5 col-md-6 text-right">
+                    <span class="signin" data-toggle="modal" data-target="#myModal"><span class="hidden-xs">Sign In</span><i class="fa fa-sign-in visible-xs-block" aria-hidden="true"></i> </span>
+                    <span class="register" data-toggle="modal" data-target="#myModal"><span
+                    class="hidden-xs">Register</span><i class="fa fa-user-plus visible-xs-block" aria-hidden="true"></i></span>
+                </div>-->
+        </div>
+    </div>
+</div>
+<header>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#myMegamenu"><span
                         class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
 
                 </button>
-						<a class="navbar-brand" href="/myapp/index">
-							<img src="../../static/myapp/images/03.png" class="img-responsive" alt="company-logo" width="170px" height="120px">
-						</a>
-					</div>
-					<div class="collapse navbar-collapse navbar-right" id="myMegamenu">
-						<ul class="nav navbar-nav">
+                <a class="navbar-brand" href="/myapp/index">
+                    <img src="../../static/myapp/images/03.png" class="img-responsive" alt="company-logo" width="170px"
+                         height="120px">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right" id="myMegamenu">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_active %}
+                        <li class="list2">
+                            <a href="/myapp/index/" class="hvr-underline-from-center">HOME</a>
+                        </li>
+                    {% else %}
+                        <li class="list2">
+                            <a href="/myapp/#/" class="hvr-underline-from-center">HOME</a>
+                        </li>
+                    {% endif %}
 
-                            <li class="list2">
-								<a href="/myapp/index/" class="hvr-underline-from-center">HOME</a>
-							</li>
+                    {% if  request.user.username == 'mica' %}
+                        <li class="list2">
+                            <a href="/myapp/addindex/" class="hvr-underline-from-center">ADD ANN & REQ</a>
+                        </li>
+                    {% endif %}
 
-                            {% if  request.user.username == 'mica' %}
-                            <li class="list2">
-								<a href="/myapp/addindex/" class="hvr-underline-from-center">ADD ANN & REQ</a>
-							</li>
-                            {% endif %}
+                    {% if  request.user.username == 'mica' %}
+                        <li class="list2">
+                            <a href="/myapp/addprojects/" class="hvr-underline-from-center">CREATE A PROJECT</a>
+                        </li>
+                    {% endif %}
 
-                            {% if  request.user.username == 'mica' %}
-                                <li class="list2">
-                                <a href="/myapp/addprojects/" class="hvr-underline-from-center">CREATE A PROJECT</a>
-							    </li>
-                            {% endif%}
+                    <li class="list2">
+                        <a href="/myapp/projects_list/" class="hvr-underline-from-center">PROJECT LIST</a>
+                    </li>
 
-                            <li class="list2">
-                                <a href="/myapp/projects_list/" class="hvr-underline-from-center">PROJECT LIST</a>
-							</li>
+                    {% if request.user.is_active %}
+                        <li class="list2">
+                            <a href="/myapp/addissues/" class="hvr-underline-from-center">ISSUES</a>
+                        </li>
+                    {% endif %}
 
-							<li class="list2">
-								<a href="/myapp/addissues/" class="hvr-underline-from-center">ISSUES</a>
-							</li>
-							<li class="list2">
-								<a href="/myapp/issues_list/" class="hvr-underline-from-center">ISSUES LIST</a>
-							</li>
+                    {% if request.user.is_active %}
+                        <li class="list2">
+                            <a href="/myapp/issues_list/" class="hvr-underline-from-center">ISSUES LIST</a>
+                        </li>
+                    {% endif %}
 
-                            {% if  request.user.username == 'mica' %}
-                                <li>
-                                <a href="/myapp/addmembers/" class="hvr-underline-from-center">ADD MEMBERS</a>
-                                </li>
-                            {% endif %}
+                    {% if  request.user.username == 'mica' %}
+                        <li>
+                            <a href="/myapp/addmembers/" class="hvr-underline-from-center">ADD MEMBERS</a>
+                        </li>
+                    {% endif %}
 
-                            <li class="list2">
-								<a href="/myapp/profiles/" class="hvr-underline-from-center">MEMBERS INFO</a>
-							</li>
+                    <li class="list2">
+                        <a href="/myapp/profiles/" class="hvr-underline-from-center">MEMBERS INFO</a>
+                    </li>
 
-                            {% if  request.user.is_authenticated %}
-                                <li class="hbar1"><a href="/myapp/logout/">LOGOUT</a></li>
-                            {% else %}
-                                <li class="hbar1"><a href="/myapp/login/">LOGIN</a></li>
-                            {% endif %}
-						</ul>
-					</div>
+                    {% if  request.user.is_authenticated %}
+                        <li class="hbar1"><a href="/myapp/logout/">LOGOUT</a></li>
+                    {% else %}
+                        <li class="hbar1"><a href="/myapp/login/">LOGIN</a></li>
+                    {% endif %}
+                </ul>
+            </div>
 
-				</nav>
-			</div>
-		</header>
+        </nav>
+    </div>
+</header>
 
- 		<!--Login And Register Modal-->
-
-
-
-
-		<!----------------Body Section Start---------------------->
-        {% block body_block %}***{% endblock %}
-        <!----------------Body Section End---------------------->
+<!--Login And Register Modal-->
 
 
+<!----------------Body Section Start---------------------->
+{% block body_block %}***{% endblock %}
+<!----------------Body Section End---------------------->
 
 
+<!--------------Footer Start--------------->
+<!------------Footer Caret Shape------------>
+<div class="shape section-top-50"></div>
+<!------------Footer Caret Shape end------------>
+<section class="footer_one">
+    <footer>
+        <div class="container">
+            <div class="row section-top-40">
+                <div class="col-md-3 col-sm-6 section-top-25">
+                    <h4 class="text-white">Follow Us</h4>
+                    <hr/>
+                    <div class="row">
+                        <!--<div class="col-xs-12">
+                            <p class="footer_text_color">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
+                        </div>-->
 
-      <!--------------Footer Start--------------->
-		<!------------Footer Caret Shape------------>
-		<div class="shape section-top-50"></div>
-		<!------------Footer Caret Shape end------------>
-		<section class="footer_one">
-			<footer>
-				<div class="container">
-					<div class="row section-top-40">
-						<div class="col-md-3 col-sm-6 section-top-25">
-							<h4 class="text-white">Follow Us</h4>
-							<hr/>
-							<div class="row">
-								<!--<div class="col-xs-12">
-									<p class="footer_text_color">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-								</div>-->
-
-								<div class="col-xs-12">
+                        <div class="col-xs-12">
 									<span class="foot_icon">
                             <a href="#"><i class="fa fa-facebook section-top-10 footer_social_icons"
                                            aria-hidden="true"></i></a>
@@ -160,113 +166,120 @@
                             <a href="#"><i class="fa fa-instagram section-top-10 footer_social_icons"
                                            aria-hidden="true"></i></a>
                         </span>
-								</div>
+                        </div>
 
-							</div>
-						</div>
+                    </div>
+                </div>
 
-						<div class="col-md-3  col-lg-3 col-sm-6 section-top-25">
-							<div class="row">
-								<div class="col-xs-12">
-									<h4 class="text-white">Issues List</h4>
-									<hr/>
-								</div>
-								<div class="footer_contact">
-									<div class="col-md-1  col-xs-1">
-										<a href="issues_list.html#object1"><i class="fa fa-caret-right div_hover1" aria-hidden="true"></i></a>
-									</div>
-									<div class="col-md-10  col-xs-10">
-										<a href="issues.html#object1" class="div_hover2">Issue1Issue1Issue1</a><br/><span class="footer_text_color">Jan. 25, 2017   </span></div>
-								</div>
-								<div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
-								<div class="footer_contact">
-									<div class="col-md-1  col-xs-1 section-top-10">
-										<a href="issues.html#object2"><i class="fa fa-caret-right div_hover1" aria-hidden="true"></i></a>
-									</div>
-									<div class="col-md-10  col-xs-10 section-top-10">
-										<a href="issues.html#object2" class="div_hover2">Issue2Issue2Issue2</a><br/><span class="footer_text_color">Jan. 21, 2017   </span>
-									</div>
-								</div>
-								<div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
-								<div class="footer_contact">
-									<div class="col-md-1  col-xs-1 section-top-10">
-										<a href="issues.html#object3"><i class="fa fa-caret-right div_hover1" aria-hidden="true"></i></a>
-									</div>
-									<div class="col-md-10  col-xs-10 section-top-10">
-										<a href="issues.html#object3" class="div_hover2">Issue3Issue3Issue3</a><br/><span class="footer_text_color">Jan. 18, 2017   </span>
-									</div>
-								</div>
-								<div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
-								<div class="footer_contact">
-									<div class="col-md-1  col-xs-1 section-top-10">
-										<a href="issues_list.html"><i class="fa fa-caret-right div_hover1" aria-hidden="true"></i></a>
-									</div>
-									<div class="col-md-10  col-xs-10 section-top-10">
-										<a href="issues_list.html" class="div_hover2">See more......</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--<div class="col-md-3 col-lg-3 col-sm-6 section-top-25">
-							<div class="row">
-								<div class="col-xs-12">
-									<h4 class="text-white">Solutions</h4>
-									<hr/>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12">
-									<ul class="shots"></ul>
-								</div>
-							</div>
-						</div>    ----->
-						<!--<div class="col-md-3 col-sm-6 section-top-25">
-							<div class="row">
-								<div class="col-xs-12">
-									<h4 class="text-white">Twitter Feed</h4>
-									<hr/>
-								</div>
+                <div class="col-md-3  col-lg-3 col-sm-6 section-top-25">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4 class="text-white">Issues List</h4>
+                            <hr/>
+                        </div>
+                        <div class="footer_contact">
+                            <div class="col-md-1  col-xs-1">
+                                <a href="issues_list.html#object1"><i class="fa fa-caret-right div_hover1"
+                                                                      aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col-md-10  col-xs-10">
+                                <a href="issues.html#object1" class="div_hover2">Issue1Issue1Issue1</a><br/><span
+                                    class="footer_text_color">Jan. 25, 2017   </span></div>
+                        </div>
+                        <div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
+                        <div class="footer_contact">
+                            <div class="col-md-1  col-xs-1 section-top-10">
+                                <a href="issues.html#object2"><i class="fa fa-caret-right div_hover1"
+                                                                 aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col-md-10  col-xs-10 section-top-10">
+                                <a href="issues.html#object2" class="div_hover2">Issue2Issue2Issue2</a><br/><span
+                                    class="footer_text_color">Jan. 21, 2017   </span>
+                            </div>
+                        </div>
+                        <div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
+                        <div class="footer_contact">
+                            <div class="col-md-1  col-xs-1 section-top-10">
+                                <a href="issues.html#object3"><i class="fa fa-caret-right div_hover1"
+                                                                 aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col-md-10  col-xs-10 section-top-10">
+                                <a href="issues.html#object3" class="div_hover2">Issue3Issue3Issue3</a><br/><span
+                                    class="footer_text_color">Jan. 18, 2017   </span>
+                            </div>
+                        </div>
+                        <div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
+                        <div class="footer_contact">
+                            <div class="col-md-1  col-xs-1 section-top-10">
+                                <a href="issues_list.html"><i class="fa fa-caret-right div_hover1"
+                                                              aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col-md-10  col-xs-10 section-top-10">
+                                <a href="issues_list.html" class="div_hover2">See more......</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-md-3 col-lg-3 col-sm-6 section-top-25">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4 class="text-white">Solutions</h4>
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="shots"></ul>
+                        </div>
+                    </div>
+                </div>    ----->
+                <!--<div class="col-md-3 col-sm-6 section-top-25">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4 class="text-white">Twitter Feed</h4>
+                            <hr/>
+                        </div>
 
-								<div class="col-xs-12">
-									<div class="tweet">
-									</div>
-								</div>
-							</div>
-						</div>-->
-					</div>
-				</div>
-			</footer>
-		</section>
-		<!-------------------Footer section End------------------>
-		<!------------------Copy rights------------------->
-		<section class="copy-rights">
-			<div class="container ">
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 section-top-15">
-						<p class="footer_text_color">
-							<a href="index.html">HOME</a> &nbsp;
-							<a href="profiles.html">ADD MEMBERS</a> &nbsp;
-							<a href="projects_list.html">PROJECT LIST </a> &nbsp;
-							{#  <a href="addprojects.html">Create a Project</a>#}
-						</p>
-					</div>
-					<div class="col-xs-12 col-sm-6 text-right section-top-15">
+                        <div class="col-xs-12">
+                            <div class="tweet">
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </footer>
+</section>
+<!-------------------Footer section End------------------>
+<!------------------Copy rights------------------->
+<section class="copy-rights">
+    <div class="container ">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 section-top-15">
+                <p class="footer_text_color">
+                    <a href="index.html">HOME</a> &nbsp;
+                    <a href="profiles.html">ADD MEMBERS</a> &nbsp;
+                    <a href="projects_list.html">PROJECT LIST </a> &nbsp;
+                    {#  <a href="addprojects.html">Create a Project</a>#}
+                </p>
+            </div>
+            <div class="col-xs-12 col-sm-6 text-right section-top-15">
 
-						<p class="footer_text_color  ">Copyright &copy; 2017. All rights reserved.</p>
-					</div>
-				</div>
-				<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-			</div>
-		</section>
-		<!------------------Copy rights End------------------>
+                <p class="footer_text_color  ">Copyright &copy; 2017. All rights reserved.</p>
+            </div>
+        </div>
+        <a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
+    </div>
+</section>
+<!------------------Copy rights End------------------>
 
-		<script src="../../static/myapp/js/jquery.min.js"></script>
-		<script src="../../static/myapp/js/bootstrap.min.js"></script>
+<script src="../../static/myapp/js/jquery.min.js"></script>
+<script src="../../static/myapp/js/bootstrap.min.js"></script>
 
-		<!----------------Page Level JS-------------------->
-		<script src="../../static/myapp/js/custom.js"></script>
+<!----------------Page Level JS-------------------->
+<script src="../../static/myapp/js/custom.js"></script>
 
-	</body>
+</body>
 
 </html>
 
