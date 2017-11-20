@@ -1,56 +1,76 @@
 {% extends 'management/base.html' %}
 
 {% block body_block %}
-
-		<!----------------Body Section Start---------------------->
-		<section class="contact_page">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-sm-offset-3 m-t-50">
-						<h1 class="underline heading">ISSUE DETAIL</h1>
-					</div>
-				</div>
-			</div>
-		</section>
+    <head>
+        <title>ISSUE DETAIL</title>
+        <style>
+            #issues {
+                color: hotpink;
+                font-size: x-large;
+                font-weight: bolder;
+                font-style: italic;
+                font-family: Helvetica, Tahoma, Arial;
+            }
+        </style>
+    </head>
+    <!----------------Body Section Start---------------------->
+    <section class="contact_page">
         <div class="container">
-			<div class="container1">
-				 <ul>
-                    <div class="container2" color = 'red'>
-                    <li>Project ID:  {{ issues.project_id }}  </li>
-                    <li>Project Name:  {{ project.name }}  </li>
-                    <li>Issue Title:  {{ issues.title }}</li>
-                    <li>Description:  {{ issues.description }}</li>
-                    <li>Author:  {{ author.username }}</li>
-                    <li>Date:  {{ issues.date }}</li>
-                    </div>
-                 </ul>
-            </div>
-			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-		</div>
-        <div class="container">
-			<div class="container1">
-				 <ul>
-                     {% for an in answer %}
-                        <div class="container2" color = 'red'>
-                        <li>Answer Description:  {{ an.answer }}  </li>
-{#                        <li>Replyer Name:  {{ an.replyer_username }}</li>#}
-                        </div>
-                     {% endfor %}
-                 </ul>
-            </div>
-			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-		</div>
-        <div class="container">
-			<div class="container1">
-                <div class="container2">
-				<form action="" method="post">
-                    {%  csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="submit"/>
-                </form>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 m-t-50">
+                    <h1 class="underline heading"><b>ISSUE DETAIL</b></h1>
                 </div>
-			</div>
-			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-		</div>
-          <!----------------Body Section End---------------------->
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="container1">
+            <ul>
+                <div class="container2" color='red'>
+                    <h1 align="center">ISSUE</h1><br>
+                    <div style=" width: 400px; margin-left: 240px;">
+                        <li><b>Project ID: </b>{{ issues.project_id }}  </li>
+                        <li><b>Project Name: </b>{{ project.name }}  </li>
+                        <li><b>Issue Title: </b>{{ issues.title }}</li>
+                        <li><b>Description: </b>{{ issues.description }}</li>
+                        <li><b>Author: </b>{{ author.username }}</li>
+                        <li><b>Date: </b>{{ issues.date }}</li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <div class="tp-header" id="tp-header"></div>
+    <div class="container">
+        <div class="container1">
+            <h1 align="center">ANSWER FROM OTHERS</h1><br>
+            <ul>
+                {% for an in answer %}
+                    <div class="container2" color='red'>
+
+                        <div style=" width: 400px; margin-left: 240px;">
+
+                            <li><b>Answer Description: </b>{{ an.answer }}  </li>
+                        </div>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="tp-header" id="tp-header"></div>
+    <div class="container">
+        <div class="container1">
+            <div class="container2">
+                <h1 align="center">ANSWER HERE</h1><br>
+                <div style=" width: 400px; margin-left: 225px;">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="submit" style="margin: 20px 110px"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------Body Section End---------------------->
 {% endblock %}

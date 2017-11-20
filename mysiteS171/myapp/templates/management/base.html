@@ -10,8 +10,40 @@
     <!-----------------Global css------------------>
     <link rel="stylesheet" href="../../static/myapp/css/bootstrap.css">
     <link rel="stylesheet" href="../../static/myapp/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/myapp/css/responsive.css">
     <!-------------------custom css-------------------->
     <link rel="stylesheet" href="../../static/myapp/css/custom.css">
+
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin: 30px 15px;
+            color: black;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            font-size: smaller;
+            min-width: 150px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            padding: 20px 10px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .messages {
+            color: red;
+            font-size: larger;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+
 
 </head>
 
@@ -36,241 +68,221 @@
     </div>
 </div>
 <!------------------Preloader end------------------->
-<div class="tp-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-7 col-md-6">
-                <a href="#"> <i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </div>
-            <!--	<div class="col-xs-5 col-md-6 text-right">
-                    <span class="signin" data-toggle="modal" data-target="#myModal"><span class="hidden-xs">Sign In</span><i class="fa fa-sign-in visible-xs-block" aria-hidden="true"></i> </span>
-                    <span class="register" data-toggle="modal" data-target="#myModal"><span
-                    class="hidden-xs">Register</span><i class="fa fa-user-plus visible-xs-block" aria-hidden="true"></i></span>
-                </div>-->
-        </div>
-    </div>
-</div>
-<header>
-    <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#myMegamenu"><span
-                        class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-
-                </button>
-                <a class="navbar-brand" href="/myapp/index">
-                    <img src="../../static/myapp/images/03.png" class="img-responsive" alt="company-logo" width="170px"
-                         height="120px">
-                </a>
-            </div>
-            <div class="collapse navbar-collapse navbar-right" id="myMegamenu">
-                <ul class="nav navbar-nav">
-                    {% if request.user.is_active %}
-                        <li class="list2">
-                            <a href="/myapp/index/" class="hvr-underline-from-center">HOME</a>
-                        </li>
-                    {% else %}
-                        <li class="list2">
-                            <a href="/myapp/#/" class="hvr-underline-from-center">HOME</a>
-                        </li>
-                    {% endif %}
-
-                    {% if  request.user.username == 'mica' %}
-                        <li class="list2">
-                            <a href="/myapp/addindex/" class="hvr-underline-from-center">ADD ANN & REQ</a>
-                        </li>
-                    {% endif %}
-
-                    {% if  request.user.username == 'mica' %}
-                        <li class="list2">
-                            <a href="/myapp/addprojects/" class="hvr-underline-from-center">CREATE A PROJECT</a>
-                        </li>
-                    {% endif %}
-
-                    <li class="list2">
-                        <a href="/myapp/projects_list/" class="hvr-underline-from-center">PROJECT LIST</a>
-                    </li>
-
-                    {% if request.user.is_active %}
-                        <li class="list2">
-                            <a href="/myapp/addissues/" class="hvr-underline-from-center">ISSUES</a>
-                        </li>
-                    {% endif %}
-
-                    {% if request.user.is_active %}
-                        <li class="list2">
-                            <a href="/myapp/issues_list/" class="hvr-underline-from-center">ISSUES LIST</a>
-                        </li>
-                    {% endif %}
-
-                    {% if  request.user.username == 'mica' %}
-                        <li>
-                            <a href="/myapp/addmembers/" class="hvr-underline-from-center">ADD MEMBERS</a>
-                        </li>
-                    {% endif %}
-
-                    <li class="list2">
-                        <a href="/myapp/profiles/" class="hvr-underline-from-center">MEMBERS INFO</a>
-                    </li>
-
-                    {% if  request.user.is_authenticated %}
-                        <li class="hbar1"><a href="/myapp/logout/">LOGOUT</a></li>
-                    {% else %}
-                        <li class="hbar1"><a href="/myapp/login/">LOGIN</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-
-        </nav>
-    </div>
-</header>
-
-<!--Login And Register Modal-->
-
-
-<!----------------Body Section Start---------------------->
-{% block body_block %}***{% endblock %}
-<!----------------Body Section End---------------------->
-
-
-<!--------------Footer Start--------------->
-<!------------Footer Caret Shape------------>
-<div class="shape section-top-50"></div>
-<!------------Footer Caret Shape end------------>
-<section class="footer_one">
-    <footer>
+<div id="grad">
+    <div class="tp-header">
         <div class="container">
-            <div class="row section-top-40">
-                <div class="col-md-3 col-sm-6 section-top-25">
-                    <h4 class="text-white">Follow Us</h4>
-                    <hr/>
-                    <div class="row">
-                        <!--<div class="col-xs-12">
-                            <p class="footer_text_color">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-                        </div>-->
-
-                        <div class="col-xs-12">
-									<span class="foot_icon">
-                            <a href="#"><i class="fa fa-facebook section-top-10 footer_social_icons"
-                                           aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter section-top-10 footer_social_icons"
-                                           aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-linkedin section-top-10 footer_social_icons"
-                                           aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-instagram section-top-10 footer_social_icons"
-                                           aria-hidden="true"></i></a>
-                        </span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-md-3  col-lg-3 col-sm-6 section-top-25">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="text-white">Issues List</h4>
-                            <hr/>
-                        </div>
-                        <div class="footer_contact">
-                            <div class="col-md-1  col-xs-1">
-                                <a href="issues_list.html#object1"><i class="fa fa-caret-right div_hover1"
+            <div class="row">
+                <div class="col-xs-7 col-md-6">
+                    <a href="https://www.facebook.com/UWindsor/?ref=br_rs"> <i class="fa fa-facebook"
+                                                                               aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/UWindsor?lang=en"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/school/14123/"><i class="fa fa-linkedin"
+                                                                        aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/uwindsor/"> <i class="fa fa-instagram"
                                                                       aria-hidden="true"></i></a>
+                </div>
+
+                <div class="col-xs-5 col-md-6 text-right">
+                    {% if  request.user.is_authenticated %}
+                        <span class="hbar1"><a href="/myapp/logout/">LOG OUT</a></span>
+                    {% else %}
+                        <span class="hbar1" id="login"><a href="/myapp/login/">LOG IN</a></span>
+                        <span class="hbar1"><a href="/myapp/login/">|</a></span>
+                        <span class="hbar1" id="register"><a href="/myapp/register/">REGISTER</a></span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+
+                    {% if request.user.is_active %}
+                        <a class="navbar-brand" href="/myapp/index">
+
+                        <img src="../../static/myapp/images/03.png" class="img-responsive" alt="company-logo"
+                             width="170px"
+                             height="120px">
+                    {% else %}
+                        <a class="navbar-brand" href="/myapp/home">
+                        <img src="../../static/myapp/images/03.png" class="img-responsive" alt="company-logo"
+                             width="170px"
+                             height="120px">
+                    {% endif %}
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse navbar-right" id="myMegamenu">
+                    <ul class="nav navbar-nav">
+                        {% if request.user.is_active %}
+                            <li class="list2">
+                                <a href="/myapp/index/" class="hvr-underline-from-center" id="index">HOME</a>
+                            </li>
+                        {% else %}
+                            <li class="list2">
+                                <a href="/myapp/home/" class="hvr-underline-from-center" id="home">HOME</a>
+                            </li>
+                        {% endif %}
+
+                        {% if  request.user.username == 'mica' %}
+                            <li class="list2">
+                                <a href="/myapp/addindex/" class="hvr-underline-from-center" id="addannreq">ADD ANN &
+                                    REQ</a>
+                            </li>
+                        {% endif %}
+
+                        {% if  request.user.username == 'mica' %}
+                            <li class="list2 dropdown">
+                                <span id="projects">PROJECTS ▼</span>
+                                <div class="dropdown-content">
+                                    <p><a href="/myapp/addprojects/">CREATE A PROJECT</a></p>
+                                    <p><a href="/myapp/projects_list/">PROJECT LIST</a></p>
+                                </div>
+                            </li>
+                            {% comment %}{% endif %}
+
+                    {% if  request.user.username != 'mica' %}{% endcomment %}
+                        {% else %}
+                            <li class="list2">
+                                <a href="/myapp/projects_list/" class="hvr-underline-from-center" id="projects">PROJECT
+                                    LIST</a>
+                            </li>
+                        {% endif %}
+
+                        {% if request.user.is_active %}
+                            <li class="list2 dropdown">
+                                <span id="issues">ISSUES ▼</span>
+                                <div class="dropdown-content">
+                                    <p><a href="/myapp/addissues/">ADD ISSUE</a></p>
+                                    <p><a href="/myapp/issues_list/">ISSUES LIST</a></p>
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        {% if  request.user.username == 'mica' %}
+                            <li class="list2 dropdown">
+                                <span id="members">MEMBERS ▼</span>
+                                <div class="dropdown-content">
+                                    <p><a href="/myapp/addmembers/">ADD MEMBERS</a></p>
+                                    <p><a href="/myapp/profiles/">MEMBERS INFO</a></p>
+                                </div>
+                            </li>
+                            {% comment %}{% endif %}
+                    {% if  request.user.username != 'mica' %}{% endcomment %}
+                        {% else %}
+                            <li class="list2">
+                                <a href="/myapp/profiles/" class="hvr-underline-from-center" id="members">MEMBERS
+                                    INFO</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+
+    <!----------------Body Section Start---------------------->
+    {% block body_block %}***{% endblock %}
+    <!----------------Body Section End---------------------->
+
+
+    <!--------------Footer Start--------------->
+    <!------------Footer Caret Shape------------>
+    <div class="shape section-top-50"></div>
+    <!------------Footer Caret Shape end------------>
+    <section class="footer_one">
+        <footer>
+            <div class="container">
+                <div class="row section-top-40">
+                    <div class="col-md-3 col-sm-6 section-top-25" id="widerrow">
+                        <h4 class="text-white">Follow Us</h4>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-xs-12" style="margin-top: 30px; margin-left: 22px">
+									<span class="foot_icon">
+                            <a href="https://www.facebook.com/UWindsor/?ref=br_rs"><i
+                                    class="fa fa-facebook section-top-10 footer_social_icons"
+                                    aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/UWindsor?lang=en"><i
+                                    class="fa fa-twitter section-top-10 footer_social_icons"
+                                    aria-hidden="true"></i></a>
+                            <a href="https://www.linkedin.com/school/14123/"><i
+                                    class="fa fa-linkedin section-top-10 footer_social_icons"
+                                    aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/uwindsor/"><i
+                                    class="fa fa-instagram section-top-10 footer_social_icons"
+                                    aria-hidden="true"></i></a>
+                        </span>
                             </div>
-                            <div class="col-md-10  col-xs-10">
-                                <a href="issues.html#object1" class="div_hover2">Issue1Issue1Issue1</a><br/><span
-                                    class="footer_text_color">Jan. 25, 2017   </span></div>
+
                         </div>
-                        <div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
-                        <div class="footer_contact">
-                            <div class="col-md-1  col-xs-1 section-top-10">
-                                <a href="issues.html#object2"><i class="fa fa-caret-right div_hover1"
-                                                                 aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col-md-3  col-lg-3 col-sm-6 section-top-25">
+                        <div class="row" id="widerrow">
+                            <div class="col-xs-12">
+                                <h4 class="text-white">Find Us</h4>
+                                <hr/>
                             </div>
-                            <div class="col-md-10  col-xs-10 section-top-10">
-                                <a href="issues.html#object2" class="div_hover2">Issue2Issue2Issue2</a><br/><span
-                                    class="footer_text_color">Jan. 21, 2017   </span>
+                            <div class="footer_contact">
+                                <div class="col-md-1  col-xs-1">
+                                    <a href="http://www.uwindsor.ca/"><i class="fa fa-caret-right div_hover1"
+                                                                         aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-md-10  col-xs-10" style="margin-bottom: 10px">
+                                    <a href="http://www.uwindsor.ca/" class="div_hover2" >Visit Our Website</a></div>
                             </div>
-                        </div>
-                        <div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
-                        <div class="footer_contact">
-                            <div class="col-md-1  col-xs-1 section-top-10">
-                                <a href="issues.html#object3"><i class="fa fa-caret-right div_hover1"
-                                                                 aria-hidden="true"></i></a>
+                            <div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
+                            <div class="footer_contact">
+                                <div class="col-md-1  col-xs-1 section-top-10">
+                                    <a href="https://www.google.ca/maps/place/University+of+Windsor/@42.3122583,-83.0683511,15z/data=!4m8!1m2!2m1!1suniversity+of+windsor!3m4!1s0x883b2d77c6ec4bef:0x1a44f1192a4e41ee!8m2!3d42.3043138!4d-83.0660386"><i
+                                            class="fa fa-caret-right div_hover1"
+                                            aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-md-10  col-xs-10 section-top-10">
+                                    <a href="https://www.google.ca/maps/place/University+of+Windsor/@42.3122583,-83.0683511,15z/data=!4m8!1m2!2m1!1suniversity+of+windsor!3m4!1s0x883b2d77c6ec4bef:0x1a44f1192a4e41ee!8m2!3d42.3043138!4d-83.0660386"
+                                       class="div_hover2">Address: 401 Sunset Ave, Windsor, ON N9B 3P4</a></span>
+                                </div>
                             </div>
-                            <div class="col-md-10  col-xs-10 section-top-10">
-                                <a href="issues.html#object3" class="div_hover2">Issue3Issue3Issue3</a><br/><span
-                                    class="footer_text_color">Jan. 18, 2017   </span>
+                            <div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
+                            <div class="footer_contact">
+                                <div class="col-md-1  col-xs-1 section-top-10">
+                                    <a href="mailto:zhu143@uwindsor.ca"><i class="fa fa-caret-right div_hover1"
+                                                                           aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-md-10  col-xs-10 section-top-10">
+                                    <a href="mailto:zhu143@uwindsor.ca" class="div_hover2">Email: zhu143@uwindsor.ca</a>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
-                        <div class="footer_contact">
-                            <div class="col-md-1  col-xs-1 section-top-10">
-                                <a href="issues_list.html"><i class="fa fa-caret-right div_hover1"
-                                                              aria-hidden="true"></i></a>
-                            </div>
-                            <div class="col-md-10  col-xs-10 section-top-10">
-                                <a href="issues_list.html" class="div_hover2">See more......</a>
+                            <div class="clearfix visible-xs-block visible-sm-block visible-lg-block visible-md-block"></div>
+                            <div class="footer_contact">
+                                <div class="col-md-1  col-xs-1 section-top-10">
+                                    <a><i class="fa fa-caret-right div_hover1"
+                                          aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-md-10  col-xs-10 section-top-10">
+                                    <a class="div_hover2">Call: (519) 253-3000</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--<div class="col-md-3 col-lg-3 col-sm-6 section-top-25">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="text-white">Solutions</h4>
-                            <hr/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <ul class="shots"></ul>
-                        </div>
-                    </div>
-                </div>    ----->
-                <!--<div class="col-md-3 col-sm-6 section-top-25">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="text-white">Twitter Feed</h4>
-                            <hr/>
-                        </div>
+            </div>
+        </footer>
+    </section>
+    <!-------------------Footer section End------------------>
+    <!------------------Copy rights------------------->
+    <section class="copy-rights">
 
-                        <div class="col-xs-12">
-                            <div class="tweet">
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-            </div>
-        </div>
-    </footer>
-</section>
-<!-------------------Footer section End------------------>
-<!------------------Copy rights------------------->
-<section class="copy-rights">
-    <div class="container ">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 section-top-15">
-                <p class="footer_text_color">
-                    <a href="index.html">HOME</a> &nbsp;
-                    <a href="profiles.html">ADD MEMBERS</a> &nbsp;
-                    <a href="projects_list.html">PROJECT LIST </a> &nbsp;
-                    {#  <a href="addprojects.html">Create a Project</a>#}
-                </p>
-            </div>
-            <div class="col-xs-12 col-sm-6 text-right section-top-15">
+        <p class="copy-right">Copyright &copy; 2017. All rights reserved.</p>
 
-                <p class="footer_text_color  ">Copyright &copy; 2017. All rights reserved.</p>
-            </div>
-        </div>
         <a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-    </div>
-</section>
+    </section>
+</div>
 <!------------------Copy rights End------------------>
 
 <script src="../../static/myapp/js/jquery.min.js"></script>

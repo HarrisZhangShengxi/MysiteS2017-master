@@ -1,38 +1,49 @@
 ﻿{% extends 'management/base.html' %}
 
 {% block body_block %}
-
-
-		<!----------------Body Section Start---------------------->
-		<section class="contact_page">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-sm-offset-3 m-t-50">
-						<h1 class="underline heading">ALL MEMBERS INFORMATION </h1>
-					</div>
-				</div>
-
-			</div>
-		</section>
+    <head>
+        <title>ALL MEMBERS</title>
+        <style>
+            #members {
+                color: hotpink;
+                font-size: x-large;
+                font-weight: bolder;
+                font-style: italic;
+                font-family: Helvetica, Tahoma, Arial;
+            }
+        </style>
+    </head>
+    <!----------------Body Section Start---------------------->
+    <section class="contact_page">
         <div class="container">
-                <div class="container1">
-                     <ul>
-                    {% for members in Profiles %}
-                        <div class="container2" >
-                        <li>First Name:  {{ members.first_name}}  </li>
-                        <li>Last Name:  {{ members.last_name }}</li>
-                        <li>Email:  {{ members.email }}</li>
-                        <li>Phone:  {{ members.phone }}</li>
-                        </div>
-                    {% endfor %}
-                     </ul>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 m-t-50">
+                    <h1 class="underline heading"><b>ALL MEMBERS INFORMATION</b></h1>
                 </div>
-                <a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
             </div>
-	<!---	<div class="container">
-			<div class="container1">
-				<div class="leftpcontent">
-					<ul>
+
+        </div>
+    </section>
+    <div class="container">
+        <div class="container1">
+            <ul>
+                {% for members in Profiles %}
+                    <div class="container2">
+                        <div style=" width: 400px; margin-left: 300px;">
+                            <li><b>First Name: </b>{{ members.first_name }}  </li>
+                            <li><b>Last Name: </b>{{ members.last_name }}</li>
+                            <li><b>Email: </b>{{ members.email }}</li>
+                            <li><b>Phone: </b>{{ members.phone }}</li>
+                        </div>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <!---	<div class="container">
+            <div class="container1">
+                <div class="leftpcontent">
+                    <ul>
                         <p>Want to join us?</p>
                         <form class="profile_form" action="" method="post" name="profile_form">
                             <li>
@@ -59,20 +70,19 @@
                                 <button class="submit" type="submit">Submit Form</button>
                             </li>
                         </form>
-					</ul>
-				</div>
-                <div class="rightpcontent">
-					<ul>
-                   <!--     <li><input align=right type="submit" value="Submit" align="right" width="300"></li>-->
-					</ul>
-				</div>
-                <div>
-
+                    </ul>
                 </div>
+                <div class="rightpcontent">
+                    <ul>
+                   <!--     <li><input align=right type="submit" value="Submit" align="right" width="300"></li>-->
+    </ul>
+    </div>
+    <div>
 
-			</div>
-			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-		</div>
+    </div>
 
-		<!----------------Body Section End---------------------->
-	{% endblock %}
+    </div>
+    </div>
+
+    <!----------------Body Section End---------------------->
+{% endblock %}

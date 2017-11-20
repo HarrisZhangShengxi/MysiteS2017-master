@@ -1,90 +1,51 @@
 ﻿{% extends 'management/base.html' %}
 
 {% block body_block %}
+    <head>
+        <title>ISSUES LIST</title>
+        <style>
+            #issues {
+                color: hotpink;
+                font-size: x-large;
+                font-weight: bolder;
+                font-style: italic;
+                font-family: Helvetica, Tahoma, Arial;
+            }
+        </style>
+    </head>
+    <!------------------Body Section Start----------------->
+    <section class="contact_page">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 m-t-50">
+                    <h1 class="underline heading"><b>ISSUE LIST</b></h1>
+                </div>
+            </div>
 
-		<!------------------Body Section Start----------------->
-		<section class="contact_page">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-sm-offset-3 m-t-50">
-						<h1 class="underline heading">Issues List</h1>
-					</div>
-				</div>
+        </div>
+    </section>
+    <div class="container2">
 
-			</div>
-		</section>
-		<div class="container2">
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="container">
-						<!---<div>
-							<ul class="nav navbar-nav filter" data-filter="true">
-								<li class="active" id="all">
-									<a href="#" data-filter="*">All</a>
-								</li>
-								<li id="solved">
-									<a href="#" data-filter=".solved">Solved</a>
-								</li>
-								<li id="unsolved">
-									<a href="#" data-filter=".unsolved">Unsolved</a>
-								</li>
-							</ul>-
-						</div>--->
-					
-				</div>
-			</nav>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-                        <th>Issues Number</th>
-                        <th>Project Name</th>
-						<th>Issues Name</th>
-						<th>Time</th>
-					</tr>
-				</thead>
-                {% for obj in issue_list %}
-                    <tbody class="tbody1">
-					<tr class="">
-                            <td><a href="{% url 'myapp:issues_detail' obj.id %}" >{{ obj.id }}</a></td>
-                            <td><a href="{% url 'myapp:issues_detail' obj.id %}" >{{ obj.project }}</a></td>
-                            <td><a href="{% url 'myapp:issues_detail' obj.id %}" >{{ obj.title }}</a></td>
-						    <td>{{ obj.date }}</td>
-					</tr>
-                    </tbody>
-                {% endfor %}
-			</table>
-		</div>
-		<!--<section class="contact_page">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-sm-offset-3 m-t-50">
-						<h1 class="underline heading">Issues</h1>
-					</div>
-				</div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Issues Number</th>
+                <th>Project Name</th>
+                <th>Issues Name</th>
+                <th>Time</th>
+            </tr>
+            </thead>
+            {% for obj in issue_list %}
+                <tbody class="tbody1">
+                <tr class="">
+                    <td><a href="{% url 'myapp:issues_detail' obj.id %}">{{ obj.id }}</a></td>
+                    <td><a href="{% url 'myapp:issues_detail' obj.id %}">{{ obj.project }}</a></td>
+                    <td><a href="{% url 'myapp:issues_detail' obj.id %}">{{ obj.title }}</a></td>
+                    <td>{{ obj.date }}</td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
 
-			</div>
-		</section>
-    <!--  <div class="container">
-			<div class="container1">
-                <form action="issues.html" method="post">
-
-                        <input type="submit" value="Submit">
-                </form>
-                <a href="---->
-
-{#				<dl>#}
-{#					<dd>Object:</dd>#}
-{#					<textarea rows="1" cols="50"> </textarea>#}
-{##}
-{#				</dl>#}
-{#				<dl id="bigdl">#}
-{#					<dd>Decsription:</dd>#}
-{#					<textarea rows="8" cols="50"> </textarea>#}
-{#				</dl>#}
-{#				<button type="submit" form="#" value="Submit">Add Issues</button>#}
-
-			
-		<!----	<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-		
-		-------Body Section End-------------->
-
-	{% endblock %}
+{% endblock %}

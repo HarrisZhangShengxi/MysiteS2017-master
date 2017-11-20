@@ -17,6 +17,9 @@ from django.contrib.auth.models import User
 def base(request):
     return render(request,'management/base.html')
 
+def HomeView(request):
+    return render(request,'management/home.html')
+
 def IndexView(request):
     acmt_list = Announcement.objects.all().order_by('-date')
     remt_list = Requirement.objects.all().order_by('-date')
@@ -165,7 +168,7 @@ def AddMember(request):
                     messages.add_message(request, messages.ERROR, 'Error! Name and email are not matched!')
                     form = MembersForm()
             except:
-                messages.add_message(request, messages.ERROR, 'Error! It seems project is not exist!')
+                messages.add_message(request, messages.ERROR, 'Error! It seems project does not exist!')
                 form = MembersForm()
         else:
             messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
@@ -194,7 +197,7 @@ def AddMember(request):
 #        form = InterestForm()
 #    return render(request, 'myapp/topicdetail.html', {'form': form, 'topic': topic})
 
-#def register(request):
+def register(request):
 #    employeelist = Employee.objects.all()
 #    if request.method == 'POST':
 #        form = RegisterForm(request.POST,request.FILES)
@@ -204,7 +207,7 @@ def AddMember(request):
 #            return HttpResponseRedirect(reverse('myapp:index'))
 #    else:
 #        form = RegisterForm()
-#    return render(request, 'myapp/register.html',{'form':form, 'employeelist':employeelist})
+    return render(request, 'management/register.html')
 
 
 def user_login(request):

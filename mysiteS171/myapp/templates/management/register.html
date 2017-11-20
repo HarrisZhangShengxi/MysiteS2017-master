@@ -1,35 +1,55 @@
 {% extends 'management/base.html' %}
 
 {% block body_block %}
-	<head><title>Register</title>
+    <head>
+        <title>REGISTER</title>
         <style>
             label {
-                margin: 30px 20px 30px 400px;
+                margin: 10px 20px 30px 400px;
                 border-radius: 50%;
             }
 
             #sub {
-                margin: 20px 500px;
+                margin: 20px 550px;
+            }
+            #register{
+                background: darkgrey;
+                color: white;
+                -webkit-border-radius:20px;
+                -moz-border-radius:20px;
+                border-radius:20px;
             }
         </style>
-		
+    <script>
+
+    </script>
     </head>
-	<body>
+    <body>
+    <!----------------Body Section Start---------------------->
+		<section class="contact_page">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3 m-t-50">
+                        <h1 class="underline heading"><b>REGISTER</b></h1>
+					</div>
+				</div>
+
+			</div>
+		</section>
     <div class="container">
         <div class="container1">
             <div class="container1_1">
                 <form action="" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <input class="input_text" id="sub" type="submit" value="submit" onclick="myFunction()">
+                    {% comment %}<label>User Name</label><input type="text" name="username" required><br>
+                    <label>Password</label><input type="password" name="password" required><br>
+                    <label>Password Again</label><input type="passwordagain" name="passwordagain" required><br>{% endcomment %}
+                    <input class="input_text" id="sub" type="submit" value="submit">
                 </form>
             </div>
         </div>
     </div>
-	</body>
-	<script>
-		function myFunction() {
-            alert("hello");
-        }
-		</script>
+    </body>
+
 {% endblock %}

@@ -1,94 +1,124 @@
 ﻿{% extends 'management/base.html' %}
 
 {% block body_block %}
-<!-- CSS -->
-<style>
-/* Force scrollbars onto browser window */
-body {
-margin-bottom: 200%;
-}
+    <!----------------Head Section Start---------------------->
+    <head>
+        <title>HOME</title>
 
-/* Box styles */
-.myBox {
-border: none;
-padding: 5px;
-font: 16px/36px sans-serif;
-width: 730px;
-height: 280px;
-overflow: scroll;
-}
+        <style>
+            /* Force scrollbars onto browser window */
+            /* Box styles */
+            .myBox {
+            {% comment %}border: none;{% endcomment %} padding: 5px;
+                font: 16px/36px sans-serif;
+            {% comment %}width: 730px;{% endcomment %} height: 270px;
+                overflow-y: scroll;
+                text-align: center;
+                margin-right: 100px;
+            }
 
-/* Scrollbar styles */
-::-webkit-scrollbar {
-width: 12px;
-height: 12px;
-}
+            #singleform {
+                color: black;
+                text-align: center;
+                margin-left: -100px;
+                font-style: normal;
+                margin-top: 30px;
+                font-size: medium;
+            }
 
-::-webkit-scrollbar-track {
-border-radius: 10px;
-width: 2px;
-border: 1px dotted pink;
-}
+            #titleli {
+                font-weight: bolder;
+            }
 
-::-webkit-scrollbar-thumb {
-background: pink;
-border-radius: 10px;
-}
+            /* Scrollbar styles */
+            ::-webkit-scrollbar {
+                width: 12px;
+                height: 12px;
+            }
 
-::-webkit-scrollbar-thumb:hover {
-background: hotpink;
-}
-</style>
-</head>
-		<!----------------Body Section Start---------------------->
+            ::-webkit-scrollbar-track {
+                border-radius: 20px;
+                width: 2px;
+                border: 1px dotted pink;
+            }
 
-		<!----------------Body Section Start---------------------->
-		<section class="contact_page">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-sm-offset-3 m-t-50">
-						<h1 class="underline heading">Home</h1>
-					</div>
-				</div>
+            ::-webkit-scrollbar-thumb {
+                background: pink;
+                border-radius: 10px;
+            }
 
-			</div>
-		</section>
-		<div class="container">
-			<div class="container1">
-				  <div class="container1_1">
-					<div class="leftcontent">Announcement</div>
-					{#  <div class="rightcontent">#}
-                    <div class="myBox">
+            ::-webkit-scrollbar-thumb:hover {
+                background: hotpink;
+            }
+
+            #index {
+                color: hotpink;
+                font-size: x-large;
+                font-weight: bolder;
+                font-style: italic;
+                font-family: Helvetica, Tahoma, Arial;
+                margin-top: 10px;
+            }
+        </style>
+
+    </head>
+    <!----------------Head Section End---------------------->
+
+    <!----------------Body Section Start---------------------->
+
+    <section class="contact_page">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 m-t-50">
+                    <h1 class="underline heading"><b>HOME</b></h1>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <div class="container">
+        <div class="container1">
+            <div class="container1_1">
+                <div class="leftcontent"><h2>Announcement</h2></div>
+                <div class="myBox">
                     {% for obj in acmtlist %}
                         <br>
-                        <li>Title: {{ obj.title }}</li>
-                        <li>Author: {{ obj.author }}</li>
-                        <li>Description: {{ obj.description }}</li>
-                        <li>Date: {{ obj.date }}</li>
+                        <ul id="singleform">
+                            <li id="titleli">Title: {{ obj.title }}</li>
+                            <li>Author: {{ obj.author }}</li>
+                            <li>Description: {{ obj.description }}</li>
+                            <li>Date: {{ obj.date }}</li>
+                        </ul>
                     {% endfor %}
-                    </div>
-                    </div>
-				</div>
-				<div class="container1_2">
-					<div class="leftcontent1"></div>
-					<div class="rightcontent1"></div>
-				</div>
-				<div class="container1_1">
-					<div class="leftcontent" color = 'white'>Requirement</div>
-					{#  <div class="rightcontent">#}
-                    <div class="myBox">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tp-header" id="tp-header"></div>
+
+    <div class="container">
+        <div class="container1">
+            <div class="container1_1">
+                <div class="leftcontent"><h2>Requirement</h2></div>
+                {% comment %}<div class="rightcontent">{% endcomment %}
+                <div class="myBox">
                     {% for obj in remtlist %}
                         <br>
-                        <li>Title: {{ obj.title }}</li>
-                        <li>Costumer: {{ obj.costumer }}</li>
-                        <li>Description: {{ obj.description }}</li>
-                        <li>Date: {{ obj.date }}</li>
+                        <ul id="singleform">
+                            <li id="titleli">Title: {{ obj.title }}</li>
+                            <li>Costumer: {{ obj.costumer }}</li>
+                            <li>Description: {{ obj.description }}</li>
+                            <li>Date: {{ obj.date }}</li>
+                        </ul>
                     {% endfor %}
-                    </div>
-                    </div>
-				</div>
-			</div>
-			<a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-		</div>
-		<!----------------Body Section End---------------------->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
+    </div>
+    <!----------------Body Section End---------------------->
 {% endblock %}

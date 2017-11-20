@@ -50,3 +50,10 @@ class MemberRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+
+        def _init_(self, *args, **kwargs):
+            super(UserCreationForm, self)._init_(*args, **kwargs)
+
+            self.fields['username'].widget.attrs['class'] = 'form-control'
+            self.fields['first_name'].widget.attrs['class'] = 'form-control'
+            self.fields['last_name'].widget.attrs['class'] = 'form-control'
