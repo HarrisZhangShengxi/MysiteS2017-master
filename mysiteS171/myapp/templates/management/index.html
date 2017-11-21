@@ -1,4 +1,4 @@
-﻿{% extends 'management/base.html' %}
+﻿{% extends 'management/base1.html' %}
 
 {% block body_block %}
     <!----------------Head Section Start---------------------->
@@ -9,11 +9,13 @@
             /* Force scrollbars onto browser window */
             /* Box styles */
             .myBox {
-            {% comment %}border: none;{% endcomment %} padding: 5px;
+            {% comment %}border: none;{% endcomment %}
+                padding: 5px;
                 font: 16px/36px sans-serif;
-            {% comment %}width: 730px;{% endcomment %} height: 270px;
+            {% comment %}width: 730px;{% endcomment %}
+                height: 270px;
                 overflow-y: scroll;
-                text-align: center;
+                {% comment %}text-align: center;{% endcomment %}
                 margin-right: 100px;
             }
 
@@ -28,6 +30,9 @@
 
             #titleli {
                 font-weight: bolder;
+            }
+            #singleform li{
+                text-align: center;
             }
 
             /* Scrollbar styles */
@@ -53,11 +58,10 @@
 
             #index {
                 color: hotpink;
-                font-size: x-large;
+                font-size: large;
                 font-weight: bolder;
                 font-style: italic;
                 font-family: Helvetica, Tahoma, Arial;
-                margin-top: 10px;
             }
         </style>
 
@@ -85,7 +89,7 @@
                         <br>
                         <ul id="singleform">
                             <li id="titleli">Title: {{ obj.title }}</li>
-                            <li>Author: {{ obj.author }}</li>
+                            <li style="margin-left: -50px">Author: {{ obj.author }}</li>
                             <li>Description: {{ obj.description }}</li>
                             <li>Date: {{ obj.date }}</li>
                         </ul>
@@ -108,7 +112,7 @@
                         <br>
                         <ul id="singleform">
                             <li id="titleli">Title: {{ obj.title }}</li>
-                            <li>Costumer: {{ obj.costumer }}</li>
+                            <li style="margin-left: -66px">Costumer: {{ obj.costumer }}</li>
                             <li>Description: {{ obj.description }}</li>
                             <li>Date: {{ obj.date }}</li>
                         </ul>

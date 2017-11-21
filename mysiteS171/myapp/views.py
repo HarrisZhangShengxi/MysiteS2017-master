@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def base(request):
-    return render(request,'management/base.html')
+    return render(request, 'management/base1.html')
 
 def HomeView(request):
     return render(request,'management/home.html')
