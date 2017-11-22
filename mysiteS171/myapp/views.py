@@ -28,7 +28,7 @@ def IndexView(request):
             return render(request,'management/index.html',{'acmtlist': acmt_list, 'remtlist': remt_list})
         else:
             pro = Member.objects.get(email=request.user.email)
-            remt_list = Requirement.objects.get(project_id=pro.project_no).order_by('-date')
+            remt_list = Requirement.objects.filter(project_id=pro.project_no).order_by('-date')
             return render(request,'management/index.html',{'acmtlist': acmt_list, 'remtlist': remt_list})
     except Member.DoesNotExist:
         acmt_list = Announcement.objects.all().order_by('-date')
