@@ -21,9 +21,11 @@ def HomeView(request):
     return render(request,'management/home.html')
 
 def IndexView(request):
-    acmt_list = Announcement.objects.all().order_by('-date')
-    remt_list = Requirement.objects.all().order_by('-date')
-    return render(request,'management/index.html',{'acmtlist': acmt_list, 'remtlist': remt_list})
+    if request.user.is_active:
+        acmt_list = Announcement.objects.all().order_by('-date')
+        project = Member.objects.get(email=request.user.email)
+        remt_list = Requirement.objects.filter(project_no=project.project_no).order_by('-date')
+        return render(request,'management/index.html',{'acmtlist': acmt_list, 'remtlist': remt_list})
 
 def AddAnRe(request):
     Aform = AnnouncementForm(request.POST)

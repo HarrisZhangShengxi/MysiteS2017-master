@@ -13,14 +13,6 @@ class Announcement(models.Model):
     def __str__(self):
         return self.title
 
-class Requirement(models.Model):
-    title = models.CharField(max_length=100)
-    customer = models.CharField(max_length=100)
-    description = models.CharField(max_length=100000)
-    date = models.DateField()
-    def __str__(self):
-        return self.title
-
 class Member(models.Model):
     #members_no = models.IntegerField(max_length=5,primary_key=True)
     project_no = models.IntegerField()
@@ -56,6 +48,14 @@ class Project(models.Model):
     def __str__(self):
         return str(self.project_no)+'  '+ self.name
 
+class Requirement(models.Model):
+    project_no = models.ForeignKey(Project)
+    title = models.CharField(max_length=100)
+    customer = models.CharField(max_length=100)
+    description = models.CharField(max_length=100000)
+    date = models.DateField()
+    def __str__(self):
+        return self.title
 
 class Issue(models.Model):
 
