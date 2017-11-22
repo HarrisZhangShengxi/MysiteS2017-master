@@ -21,42 +21,55 @@ def HomeView(request):
     return render(request,'management/home.html')
 
 def IndexView(request):
-    if request.user.is_active:
+    try:
         acmt_list = Announcement.objects.all().order_by('-date')
-        project = Member.objects.get(email=request.user.email)
-        remt_list = Requirement.objects.filter(project_no=project.project_no).order_by('-date')
-        return render(request,'management/index.html',{'acmtlist': acmt_list, 'remtlist': remt_list})
+        if request.user.username == 'mica':
+            remt_list = Requirement.objects.all().order_by('-date')
+            return render(request,'management/index.html',{'acmtlist': acmt_list, 'remtlist': remt_list})
+        else:
+            pro = Member.objects.get(email=request.user.email)
+            remt_list = Requirement.objects.get(project_id=pro.project_no).order_by('-date')
+            return render(request,'management/index.html',{'acmtlist': acmt_list, 'remtlist': remt_list})
+    except Member.DoesNotExist:
+        acmt_list = Announcement.objects.all().order_by('-date')
+        remt_list = None
+        return render(request, 'management/index.html', {'acmtlist': acmt_list, 'remtlist': remt_list})
 
-def AddAnRe(request):
+def AddAn(request):
     Aform = AnnouncementForm(request.POST)
     if request.method == 'POST':
-        if Aform.is_valid():
-            announcement = Aform.save(commit=False)
-            announcement.date = date.today()
-            announcement.save()
-            messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
-            Aform = AnnouncementForm()
-        else:
+        try:
+            if Aform.is_valid():
+                announcement = Aform.save(commit=False)
+                announcement.date = date.today()
+                announcement.save()
+                messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
+                Aform = AnnouncementForm()
+        except:
             messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
             Aform = AnnouncementForm()
     else:
         Aform = AnnouncementForm()
 
+    return render(request, 'management/addAn.html', {'Aform': Aform})
+
+def AddRe(request):
     Rform = RequirementForm(request.POST)
     if request.method == 'POST':
-        if Rform.is_valid():
-            requirement = Rform.save(commit=False)
-            requirement.date = date.today()
-            requirement.save()
-            messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
-            Rform = RequirementForm()
-        else:
+        try:
+            if Rform.is_valid():
+                requirement = Rform.save(commit=False)
+                requirement.date = date.today()
+                requirement.save()
+                messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
+                Rform = RequirementForm()
+        except:
             messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
             Rform = RequirementForm()
     else:
         Rform = RequirementForm()
 
-    return render(request, 'management/addindex.html', {'Aform': Aform, 'Rform': Rform})
+    return render(request, 'management/addRe.html', {'Rform': Rform})
 
 def AddProject(request):
     form = ProjectForm(request.POST)
@@ -75,11 +88,14 @@ def AddProject(request):
     return render(request, 'management/addprojects.html', {'form': form})
 
 def Project_list(request):
-    if request.user.username == 'mica':
-        Project_list = Project.objects.all()
-    else:
-        member = Member.objects.filter(first_name=request.user.username)
-        Project_list = Project.objects.filter(members=member)
+    try:
+        if request.user.username == 'mica':
+            Project_list = Project.objects.all()
+        else:
+            member = Member.objects.filter(email=request.user.email)
+            Project_list = Project.objects.filter(members=member)
+    except Member.DoesNotExist:
+        Project_list = None
     return render(request, 'management/projects_list.html', {'Project_list': Project_list})
 
 def AddIssues(request):
@@ -108,11 +124,14 @@ def AddIssues(request):
 
 
 def Issues_list(request):
-    if request.user.username == 'mica':
-        issue_list = Issue.objects.all()
-    else:
-        P_no = Member.objects.filter(first_name=request.user.username).values_list('project_no')
-        issue_list = Issue.objects.filter(project=P_no)
+    try:
+        if request.user.username == 'mica':
+            issue_list = Issue.objects.all()
+        else:
+            P_no = Member.objects.filter(email=request.user.email).values_list('project_no')
+            issue_list = Issue.objects.filter(project=P_no)
+    except Member.DoesNotExist:
+        issue_list = None
 
     return render(request, 'management/issues_list.html', {'issue_list':issue_list})
 
@@ -139,11 +158,14 @@ def Issues_Detail(request,issues_id):
     return render(request, 'management/issues_detail.html',{'issues':issues, 'answer':answer, 'project':project, 'author':author, 'form':form})
 
 def Profiles(request):
-    if request.user.username == 'mica':
-        Profiles = Member.objects.all()[:10]
-    else:
-        P_no = Member.objects.filter(first_name=request.user.username).values_list('project_no')
-        Profiles = Member.objects.filter(project_no=P_no)
+    try:
+        if request.user.username == 'mica':
+            Profiles = Member.objects.all()[:10]
+        else:
+            P_no = Member.objects.filter(email=request.user.email).values_list('project_no')
+            Profiles = Member.objects.filter(project_no=P_no)
+    except Member.DoesNotExist:
+        Profiles = None
     #Profiles = Member.objects.all()[:10]
     #form = MembersForm(request.POST)
     #if form.is_valid():
@@ -198,18 +220,6 @@ def AddMember(request):
 #    elif request.method == 'GET':
 #        form = InterestForm()
 #    return render(request, 'myapp/topicdetail.html', {'form': form, 'topic': topic})
-
-def register(request):
-#    employeelist = Employee.objects.all()
-#    if request.method == 'POST':
-#        form = RegisterForm(request.POST,request.FILES)
-#        if form.is_valid():
-#            employee = form.save(commit=False)
-#            employee.save()
-#            return HttpResponseRedirect(reverse('myapp:index'))
-#    else:
-#        form = RegisterForm()
-    return render(request, 'management/register.html')
 
 
 def user_login(request):

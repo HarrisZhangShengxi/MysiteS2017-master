@@ -27,16 +27,19 @@
     <div class="container">
         <div class="container1">
             <ul>
+            {% if Profiles %}
                 {% for members in Profiles %}
                     <div class="container2">
                         <div style=" width: 400px; margin-left: 300px;">
                             <li><b>First Name: </b>{{ members.first_name }}  </li>
                             <li><b>Last Name: </b>{{ members.last_name }}</li>
                             <li><b>Email: </b>{{ members.email }}</li>
-                            <li><b>Phone: </b>{{ members.phone }}</li>
                         </div>
                     </div>
                 {% endfor %}
+            {% else %}
+                <br>There are no members!
+            {% endif %}
             </ul>
         </div>
     </div>

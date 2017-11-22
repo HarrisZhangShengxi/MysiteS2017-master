@@ -49,7 +49,7 @@ class Project(models.Model):
         return str(self.project_no)+'  '+ self.name
 
 class Requirement(models.Model):
-    project_no = models.ForeignKey(Project)
+    project = models.ForeignKey(Project)
     title = models.CharField(max_length=100)
     customer = models.CharField(max_length=100)
     description = models.CharField(max_length=100000)

@@ -17,7 +17,7 @@ class AnnouncementForm(forms.ModelForm):
 class RequirementForm(forms.ModelForm):
     class Meta:
         model = Requirement
-        fields = ['title', 'customer', 'description']
+        fields = ['title', 'customer', 'project', 'description']
     #title = forms.CharField(label='Title', max_length=10000)
     #costumer = forms.CharField(label='Costumer', max_length=50)
     #description = forms.CharField(label='Description', widget=forms.Textarea)

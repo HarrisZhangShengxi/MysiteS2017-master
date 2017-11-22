@@ -36,6 +36,7 @@
     <div class="container">
         <div class="container1">
             <ul>
+            {% if Project_list %}
                 {% for projects in Project_list %}
                     <div class="container2" color='red'>
                         <div style=" width: 400px; margin-left: 240px;">
@@ -48,6 +49,9 @@
                         </div>
                     </div>
                 {% endfor %}
+            {% else %}
+                <br>There are no projects!
+            {% endif %}
             </ul>
         </div>
 

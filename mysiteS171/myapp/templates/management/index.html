@@ -85,6 +85,7 @@
             <div class="container1_1">
                 <div class="leftcontent"><h2>Announcement</h2></div>
                 <div class="myBox">
+                {% if acmtlist %}
                     {% for obj in acmtlist %}
                         <br>
                         <ul id="singleform">
@@ -94,6 +95,9 @@
                             <li>Date: {{ obj.date }}</li>
                         </ul>
                     {% endfor %}
+                {% else %}
+                    <br>There are no announcement!
+                {% endif %}
                 </div>
             </div>
         </div>
@@ -108,21 +112,25 @@
                 <div class="leftcontent"><h2>Requirement</h2></div>
                 {% comment %}<div class="rightcontent">{% endcomment %}
                 <div class="myBox">
-                    {% for obj in remtlist %}
+                {% if remtlist %}
+                        {% for obj in remtlist %}
                         <br>
                         <ul id="singleform">
                             <li id="titleli">Title: {{ obj.title }}</li>
-                            <li style="margin-left: -66px">Costumer: {{ obj.costumer }}</li>
+                            <li style="margin-left: -66px">Costumer: {{ obj.customer }}</li>
+                            <li>Project: {{ obj.project}}</li>
                             <li>Description: {{ obj.description }}</li>
                             <li>Date: {{ obj.date }}</li>
                         </ul>
-                    {% endfor %}
+                        {% endfor %}
+                {% else %}
+                    <br>You have not been participated in any project!
+                {% endif %}
                 </div>
             </div>
         </div>
     </div>
 
     <a href="#" id="return-to-top"><img src="../../static/myapp/images/backto.png" alt="image-missing"></a>
-    </div>
     <!----------------Body Section End---------------------->
 {% endblock %}

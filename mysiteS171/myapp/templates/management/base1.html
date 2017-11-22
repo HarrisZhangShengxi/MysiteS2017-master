@@ -126,9 +126,12 @@
                         {% endif %}
 
                         {% if  request.user.username == 'mica' %}
-                            <li class="list2">
-                                <a href="/myapp/addindex/" class="hvr-underline-from-center" id="addannreq">ADD ANN &
-                                    REQ</a>
+                            <li class="list2 dropdown">
+                                <span id="projects">ADD ANN & REQ ▼</span>
+                                <div class="dropdown-content">
+                                    <p><a href="/myapp/addan/">ADD ANNOUNCEMENT</a></p>
+                                    <p><a href="/myapp/addre/">ADD REQUIREMENT</a></p>
+                                </div>
                             </li>
                         {% endif %}
 
@@ -139,6 +142,10 @@
                                     <p><a href="/myapp/addprojects/">CREATE A PROJECT</a></p>
                                     <p><a href="/myapp/projects_list/">PROJECT LIST</a></p>
                                 </div>
+                            </li>
+                        {% else%}
+                            <li class="list2">
+                                <a href="/myapp/projects_list/" class="hvr-underline-from-center" id="projects">PROJECT LIST</a>
                             </li>
                             {% comment %}{% endif %}
 
@@ -167,6 +174,10 @@
                                     <p><a href="/myapp/addmembers/">ADD MEMBERS</a></p>
                                     <p><a href="/myapp/profiles/">MEMBERS INFO</a></p>
                                 </div>
+                            </li>
+                        {% else %}
+                            <li class="list2">
+                                <a href="/myapp/profiles/" class="hvr-underline-from-center" id="members">MEMBER INFO</a>
                             </li>
                             {% comment %}{% endif %}
                     {% if  request.user.username != 'mica' %}{% endcomment %}
