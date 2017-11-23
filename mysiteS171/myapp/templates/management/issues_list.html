@@ -27,6 +27,7 @@
     <div class="container2">
 
         <table class="table table-hover">
+        {% if issue_list %}
             <thead>
             <tr>
                 <th>Issues Number</th>
@@ -35,7 +36,6 @@
                 <th>Time</th>
             </tr>
             </thead>
-        {% if issue_list %}
             {% for obj in issue_list %}
                 <tbody class="tbody1">
                 <tr class="">
@@ -47,7 +47,7 @@
                 </tbody>
             {% endfor %}
         {% else %}
-            <br>There are no issues!
+            <br><div style="font-size: larger;text-align: center">There are no issues!</div>
         {% endif %}
         </table>
     </div>

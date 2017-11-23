@@ -41,6 +41,7 @@
             font-size: larger;
             margin-bottom: 20px;
             text-align: center;
+            margin-left: -100px;
         }
     </style>
 
@@ -127,7 +128,7 @@
 
                         {% if  request.user.username == 'mica' %}
                             <li class="list2 dropdown">
-                                <span id="projects">ADD ANN & REQ ▼</span>
+                                <span id="addannreq">ADD ANN & REQ ▼</span>
                                 <div class="dropdown-content">
                                     <p><a href="/myapp/addan/">ADD ANNOUNCEMENT</a></p>
                                     <p><a href="/myapp/addre/">ADD REQUIREMENT</a></p>

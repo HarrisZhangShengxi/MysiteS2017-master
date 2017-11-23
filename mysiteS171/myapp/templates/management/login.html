@@ -12,15 +12,26 @@
             #sub {
                 margin: 20px 550px;
             }
-            #login{
-                background: darkgrey;
-                -webkit-border-radius:20px;
-                -moz-border-radius:20px;
-                border-radius:20px;
-            }
-            #login:hover{
 
+            #login {
+                background: darkgrey;
+                -webkit-border-radius: 20px;
+                -moz-border-radius: 20px;
+                border-radius: 20px;
             }
+            form{
+                margin-top: 50px;
+            }
+            .error {
+                color: red;
+                font-size: larger;
+                {% comment %}margin-bottom: 20px;{% endcomment %}
+                text-align: center;
+{#                {% comment %}border: 2px solid red;{% endcomment %}#}
+                margin-left:-700px;
+                margin-top: 140px;
+            }
+
         </style>
     </head>
     <!----------------Body Section Start---------------------->
@@ -36,7 +47,7 @@
     </section>
     <div class="container">
         <div class="container1">
-            <div class="container1_1">
+            <div class="container1_1" {% comment %}style="border: 2px solid green"{% endcomment %}>
                 <form action="" method="post">
                     {% csrf_token %}
                     {% if messages %}

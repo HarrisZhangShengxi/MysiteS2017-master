@@ -1,9 +1,9 @@
 from datetime import date
 from django.contrib import messages
-from django.shortcuts import render,render_to_response
+import re
 
 from .models import Announcement, Requirement,  Project, Issue, Member, Issue_Detail
-from .forms import ProjectForm, AnnouncementForm,RequirementForm,IssuesForm,MembersForm,IssueDetailForm,MemberRegisterForm
+from .forms import ProjectForm, AnnouncementForm,RequirementForm,IssuesForm,MembersForm,IssueDetailForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView
@@ -88,32 +88,36 @@ def AddProject(request):
     return render(request, 'management/addprojects.html', {'form': form})
 
 def Project_list(request):
-    try:
-        if request.user.username == 'mica':
-            Project_list = Project.objects.all()
-        else:
-            member = Member.objects.filter(email=request.user.email)
-            Project_list = Project.objects.filter(members=member)
-    except Member.DoesNotExist:
-        Project_list = None
+    if Member.objects.filter(email=request.user.email).exists():
+        member = Member.objects.filter(email=request.user.email)
+        Project_list = Project.objects.filter(members=member)
+    else:
+        Project_list = Project.objects.all()
     return render(request, 'management/projects_list.html', {'Project_list': Project_list})
 
 def AddIssues(request):
-    form = IssuesForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            issue = form.save(commit=False)
-            issue.date = date.today()
-            issue.save()
-            messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
-            form = IssuesForm()
+    if Member.objects.filter(email=request.user.email).exists() or request.user.username == 'mica':
+        form = IssuesForm(request.POST)
+        if request.method == 'POST':
+            if form.is_valid():
+                issue = form.save(commit=False)
+                issue.date = date.today()
+                issue.save()
+                messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
+                form = IssuesForm()
+            else:
+                messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
+                form = IssuesForm()
         else:
-            messages.add_message(request, messages.ERROR, 'Error! Please check your input again!')
             form = IssuesForm()
     else:
-        form = IssuesForm()
+        messages.add_message(request, messages.ERROR, 'Please apply your project first!')
+        form = None
+
     return render(request, 'management/addissues.html', {'form': form})
-    #issue = Issue.objects.all()
+
+
+        #issue = Issue.objects.all()
     #answer = Issue.objects.values_list("object", flat=True)
     #form = IssuesForm(request.POST)
     #if form.is_valid():
@@ -124,13 +128,12 @@ def AddIssues(request):
 
 
 def Issues_list(request):
-    try:
-        if request.user.username == 'mica':
-            issue_list = Issue.objects.all()
-        else:
-            P_no = Member.objects.filter(email=request.user.email).values_list('project_no')
-            issue_list = Issue.objects.filter(project=P_no)
-    except Member.DoesNotExist:
+    if request.user.username == 'mica':
+        issue_list = Issue.objects.all()
+    elif Member.objects.filter(email=request.user.email).exists():
+        P_no = Member.objects.filter(email=request.user.email).values_list('project_no')
+        issue_list = Issue.objects.filter(project=P_no)
+    else:
         issue_list = None
 
     return render(request, 'management/issues_list.html', {'issue_list':issue_list})
@@ -183,15 +186,18 @@ def AddMember(request):
             member = form.save(commit=False)
             try:
                 Project.objects.get(project_no=member.project_no)
-                try:
-                    User.objects.get(first_name=member.first_name, last_name=member.last_name, email=member.email)
+                if Member.objects.filter(email=member.email, project_no=member.project_no).exists():
+                    messages.add_message(request, messages.ERROR,
+                                         'Error! The member already participates in this project!')
+                    form = MembersForm()
+                elif User.objects.filter(first_name=member.first_name, last_name=member.last_name, email=member.email).exists():
                     member.save()
                     messages.add_message(request, messages.SUCCESS, 'You have been submitted successfully!')
                     form = MembersForm()
-                except:
-                    messages.add_message(request, messages.ERROR, 'Error! Name and email are not matched!')
+                else:
+                    messages.add_message(request, messages.ERROR, 'Error! We do not have this member!')
                     form = MembersForm()
-            except:
+            except Project.DoesNotExist:
                 messages.add_message(request, messages.ERROR, 'Error! It seems project does not exist!')
                 form = MembersForm()
         else:
@@ -244,14 +250,25 @@ def user_logout(request):
 
 def user_register(request):
     if request.method == 'POST':
-        form = MemberRegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
-            return  HttpResponseRedirect(reverse('myapp:login'))
-    else:
-        form = MemberRegisterForm()
-    return  render(request, 'management/register.html', {'form':form})
+        username = request.POST['username']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        # form = MemberRegisterForm(request.POST)
+        if re.match(r"^\w+$", username):
+            if password1 == password2:
+                user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password1)
+            # user = form.save(commit=False)
+                user.save()
+                return  HttpResponseRedirect(reverse('myapp:login'))
+            else:
+                messages.add_message(request, messages.ERROR, 'The password is not matched!')
+        else:
+            messages.add_message(request, messages.ERROR, ' For Username, only letters, digits and _ allowed!')
+                # form = MemberRegisterForm()
+    return  render(request, 'management/register.html')
 
 
 #def mycourses(request):
